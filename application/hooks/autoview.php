@@ -10,7 +10,7 @@ class AutoView{
             AND
             is_subclass_of($CI, 'Web_Controller')
         ){
-            $CI->render();
+            $CI->_render();
         }
     }
 }

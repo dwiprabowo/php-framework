@@ -4,7 +4,8 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.2.4",
-		"twig/twig": "2.0.*@dev"
+		"twig/twig": "2.0.*@dev",
+        "twbs/bootstrap": "3.3.4"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
