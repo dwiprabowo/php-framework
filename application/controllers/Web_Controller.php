@@ -83,7 +83,8 @@ class Web_Controller extends MY_Controller{
             'base_url',
             'site_url',
             'set_value',
-            'form_error'
+            'form_error',
+            'twbs',
         ];
     }
 

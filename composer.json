@@ -5,7 +5,8 @@
 	"require": {
 		"php": ">=5.2.4",
 		"twig/twig": "2.0.*@dev",
-        "twbs/bootstrap": "3.3.4"
+        "twbs/bootstrap": "3.3.4",
+        "components/jquery": "2.1.4"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

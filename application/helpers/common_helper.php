@@ -37,3 +37,9 @@ if(!function_exists('d')){
         }
     }
 }
+
+if(!function_exists('twbs')){
+    function twbs($rpath){
+        return TWBS.$rpath;
+    }
+}

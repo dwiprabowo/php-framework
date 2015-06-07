@@ -3,6 +3,7 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('EXT', '.php');
 
+require_once __DIR__.DS.'constants'.EXT;
 require_once __DIR__.DS.'preconfig'.EXT;
 require_once __DIR__.DS.'vendor/autoload'.EXT;
 
