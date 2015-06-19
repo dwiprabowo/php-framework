@@ -11,4 +11,15 @@ class Migrate extends CLI_Controller{
     public function index(){
         $this->migration->latest();
     }
+
+    public function version($number = false){
+        if($number){
+            $number = intval($number);
+        }
+        if($number === false){
+            d("Please provide version number");
+        }else{
+            $this->migration->version($number);
+        }
+    }
 }

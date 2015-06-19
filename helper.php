@@ -12,7 +12,11 @@ if(!function_exists('d')){
                 continue;
             }
             ob_start();
-            echo var_export($v);
+            if(is_string($v)){
+                echo $v;
+            }else{
+                echo var_export($v);
+            }
             $v = ob_get_clean();
         }
         foreach ($null_items as $k => $v) {
@@ -25,8 +29,6 @@ if(!function_exists('d')){
         }
         if(!is_cli()){
             echo "<pre>";
-        }else{
-            echo "\n";
         }
         echo implode(' <=> ', $args);
         if(!is_cli()){
