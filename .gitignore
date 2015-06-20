@@ -20,3 +20,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.swp
 *.swo
 *~
+
+assets/php-chunked-xhtml
