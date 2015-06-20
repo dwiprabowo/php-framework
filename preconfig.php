@@ -1,3 +1,3 @@
 <?php
 
-define('ENABLE_PROFILER', true);
+// define('ENABLE_PROFILER', true);
