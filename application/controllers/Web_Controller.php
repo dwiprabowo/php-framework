@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Web_Controller extends MY_Controller{
+abstract class Web_Controller extends MY_Controller{
 
     const TWIG_EXT = ".html.twig";
     const TWIG_DIR = APPPATH."views".DS;
@@ -17,8 +17,6 @@ class Web_Controller extends MY_Controller{
 
     function __construct(){
         parent::__construct();
-        $this->_request();
-        $this->_init();
     }
 
     function _request(){
@@ -53,8 +51,10 @@ class Web_Controller extends MY_Controller{
     }
 
     function _init(){
+        $this->load->library('form_validation', null, 'validate');
+        $this->_request();
         $this->_initTwig();
-        $this->form_validation->set_error_delimiters(
+        $this->validate->set_error_delimiters(
             '<label class="control-label">'
             , '</label>'
         );
@@ -139,4 +139,5 @@ class Web_Controller extends MY_Controller{
         }
         return false;
     }
+
 }
