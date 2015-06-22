@@ -3,132 +3,45 @@
 {% block title %}Home{% endblock %}
 
 {% block style %}
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:700italic' rel='stylesheet' type='text/css'>
     <style>
-        /* Space out content a bit */
-        body {
-            padding-top: 20px;
-            padding-bottom: 20px;
+        #main-content{
+            margin-top: 9%;
         }
-
-        /* Everything but the jumbotron gets side spacing for mobile first views */
-        .header,
-        .marketing,
-        .footer {
-            padding-right: 15px;
-            padding-left: 15px;
+        #main-title{
+            font-family: 'Titillium Web';
         }
-
-        /* Custom page header */
-        .header {
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e5e5e5;
+        #php-link.btn{
+            font-family: 'Ubuntu';
+            background: #8892BF;
+            color: #444;
         }
-        /* Make the masthead heading the same height as the navigation */
-        .header h3 {
-            margin-top: 0;
-            margin-bottom: 0;
-            line-height: 40px;
+        #php-link h1{
+            margin: 0;
         }
-
-        /* Custom page footer */
-        .footer {
-            padding-top: 19px;
-            color: #777;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        /* Customize container */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 730px;
-            }
-        }
-        .container-narrow > hr {
-            margin: 30px 0;
-        }
-
-        /* Main marketing message and sign up button */
-        .jumbotron {
-            text-align: center;
-            border-bottom: 1px solid #e5e5e5;
-        }
-        .jumbotron .btn {
-            padding: 14px 24px;
-            font-size: 21px;
-        }
-
-        /* Supporting marketing content */
-        .marketing {
-            margin: 40px 0;
-        }
-        .marketing p + h4 {
-            margin-top: 28px;
-        }
-
-        /* Responsive: Portrait tablets and up */
-        @media screen and (min-width: 768px) {
-            /* Remove the padding we set earlier */
-            .header,
-            .marketing,
-            .footer {
-                padding-right: 0;
-                padding-left: 0;
-            }
-            /* Space out the masthead */
-            .header {
-                margin-bottom: 30px;
-            }
-            /* Remove the bottom border on the jumbotron for visual effect */
-            .jumbotron {
-                border-bottom: 0;
-            }
+        #item-container{
+            margin-top: 4%;
         }
     </style>
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <div class="header clearfix">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
-                    <li role="presentation"><a href="#">About</a></li>
-                    <li role="presentation"><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <h3 class="text-muted">Project name</h3>
-        </div>
-        <div class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p>
+        <div class="row" id="main-content">
+            <div class="col-sm-12 text-center">
+                <div id="main-title">
+                    <h1>127.0.0.1</h1>
+                </div>
+            </div>
+            <div id="item-container" class="col-sm-12 text-center">
                 <a 
-                    class="btn btn-lg btn-success" 
+                    id="php-link" 
+                    class="btn" 
                     href="{{ base_url('assets/php-chunked-xhtml/index.html') }}" 
                     role="button"
-                >Sign up today</a>
-            </p>
-        </div>
-        <div class="row marketing">
-            <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-            <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                ><h1><em>php</em></h1></a>
             </div>
         </div>
-        <footer class="footer">
-            <p>&copy; Company 2014</p>
-        </footer>
-    </div> <!-- /container -->
+    </div>
 {% endblock %}
