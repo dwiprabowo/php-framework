@@ -1,0 +1,164 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block title %}127.0.0.1{% endblock %}
+
+{% block style %}
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:900,900italic' rel='stylesheet' type='text/css'>
+    <style>
+        #main-content{
+            margin-top: 9%;
+        }
+        #main-title{
+            font-family: 'Titillium Web';
+        }
+        .the-item{
+            position: relative;
+        }
+        #php-link.btn{
+            font-family: 'Ubuntu';
+            background: #8892BF;
+            color: #444;
+        }
+        #ci-link.btn{
+            background: #dd4814;
+        }
+        #vim-link.btn{
+            font-family: 'Merriweather';
+            background: #007F00;
+            color: #BFBFBF;
+        }
+        .the-item h1{
+            margin: 0;
+        }
+        #vim-link h1{
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+        #vim-link h1 span.second{
+            position: relative;
+            font-size: 24px;
+        }
+        #vim-link h1 span.first{
+            font-size: 1.625em;
+            font-style: italic;
+            position: absolute;
+            left: 18px;
+            top: -8px;
+        }
+        #vim-link h1{
+            padding-left: 32px;
+        }
+        #item-container{
+            margin-top: 4%;
+        }
+        .the-item{
+            margin: 0 12px;
+        }
+        table{
+            text-align: left;
+        }
+        table tbody td.title{
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" id="main-content">
+            <div class="col-sm-12 text-center">
+                <div id="main-title">
+                    <div
+                        id="vim-link" 
+                        class="btn the-item" 
+                        role="button"
+                    >
+                        <h1>
+                            <span class="first">V</span>
+                            <span class="second">im</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 text-center" id="item-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td style="width: 30%;"></td>
+                            <td style="width: 70%;"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="title">
+                                Resize splits more quickly
+                            </td>
+                            <td class="content">
+                                <p>
+                                    You can use the <code>:resize</code> command or its shortcut <code>:res</code>
+                                    to change the height of the window. To change the height to 60 rows, use:
+                                </p>
+                                <pre
+>:resize 60</pre
+                                >
+                                You can also change the height in increments. To change the height by
+                                increments of 5, use:
+                                <pre
+>:res +5
+:res -5</pre
+                                >
+                                <p>
+                                    You can use <code>:vertical resize</code> to change the width
+                                    of the current window. To change the width to 80 columns, use:
+                                </p>
+                                <pre
+>:vertical resize 80</pre
+                                >
+                                <p>
+                                    You can also change the width in increments. To change the width
+                                    by increments of 5, use:
+                                </p>
+                                <pre
+>:vertical resize +5
+:vertical resize -5</pre
+                                >
+                                <p>
+                                    For a <b>split</b> window: You can use <kbd>Ctrl-w +</kbd>
+                                    and <kbd>Ctrl-w -</kbd> to resize the height of the current
+                                    window by a single row. For a <strong>vsplit</strong> window:
+                                    You can use <kbd>Ctrl-w ></kbd> and <kbd>Ctrl-w <</kbd>
+                                    to resize the width of the current window by a single column.
+                                    Aditionally, these key combinations accept a count prefix so
+                                    that you can change the window size in larger steps
+                                    [e.g <kbd>10 Ctrl-w +</kbd> increases the window size by 10 lines].
+                                </p>
+                                <p>
+                                    To resize all windows to equal dimensions based on their splits,
+                                    you can use <kbd>Ctrl-w =</kbd>.
+                                </p>
+                                <p>
+                                    To increase a window to its maximum size use <kbd>Ctrl-w _</kbd>.
+                                </p>
+                                <p>
+                                    To resize in different steps, you can create maps that will adjust
+                                    the window size differently. For example to increase the window size
+                                    by a factor of 1.5 and decrease the window size by 0.67, you can map
+                                    this:
+                                </p>
+                                <pre
+>nnoremap &lt;silent&gt; &lt;Leader&gt;+ :exe "resize " . (winheight(0) * 3/2)&lt;CR&gt;
+nnoremap &lt;silent&gt; &lt;Leader&gt;- :exe "resize ". (winheight(0) * 2/3)&lt;CR&gt;</pre
+                                >
+                                <p>
+                                    In Gvim and vim in terminals with mouse supprt, it is also possible
+                                    to use the mouse to resize a window. Simply grab the statusline at
+                                    the window border and drag it into the desired direction.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
