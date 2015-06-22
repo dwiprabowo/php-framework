@@ -17,11 +17,17 @@
             background: #8892BF;
             color: #444;
         }
+        #ci-link.btn{
+            background: #dd4814;
+        }
         #php-link h1{
             margin: 0;
         }
         #item-container{
             margin-top: 4%;
+        }
+        .the-item{
+            margin: 0 12px;
         }
     </style>
 {% endblock %}
@@ -37,10 +43,18 @@
             <div id="item-container" class="col-sm-12 text-center">
                 <a 
                     id="php-link" 
-                    class="btn" 
+                    class="btn the-item" 
                     href="{{ base_url('assets/php-chunked-xhtml/index.html') }}" 
                     role="button"
                 ><h1><em>php</em></h1></a>
+                <a 
+                    id="ci-link" 
+                    class="btn the-item" 
+                    href="{{ base_url('user_guide_src/build/html/index.html') }}" 
+                    role="button"
+                >
+                    <img src="{{ base_url('assets/img/ci-logo-white.png') }}">
+                </a>
             </div>
         </div>
     </div>
