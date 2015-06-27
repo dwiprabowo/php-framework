@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da9f95458e8d20ce61b9c25b4447a7dc",
+    "hash": "b8e8612bd44ad3070b87eb3901b7b9a0",
     "packages": [
         {
             "name": "components/jquery",
@@ -47,6 +47,54 @@
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
             "time": "2015-05-08 05:04:47"
+        },
+        {
+            "name": "fortawesome/font-awesome",
+            "version": "v4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "shasum": ""
+            },
+            "require-dev": {
+                "jekyll": "1.0.2",
+                "lessc": "1.4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Gandy",
+                    "email": "dave@fontawesome.io",
+                    "homepage": "http://twitter.com/davegandy",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The iconic font and CSS framework",
+            "homepage": "http://fontawesome.io/",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon"
+            ],
+            "time": "2015-01-22 18:09:42"
         },
         {
             "name": "twbs/bootstrap",
@@ -105,12 +153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "fe67c5ba3a2418f671307b17adfd8914ffc04b0b"
+                "reference": "2a08a67108404c8af1555bb9316b59f73fe2f076"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fe67c5ba3a2418f671307b17adfd8914ffc04b0b",
-                "reference": "fe67c5ba3a2418f671307b17adfd8914ffc04b0b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2a08a67108404c8af1555bb9316b59f73fe2f076",
+                "reference": "2a08a67108404c8af1555bb9316b59f73fe2f076",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +202,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-06 23:29:09"
+            "time": "2015-06-24 16:24:55"
         }
     ],
     "packages-dev": [
