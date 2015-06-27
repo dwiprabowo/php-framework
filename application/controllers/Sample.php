@@ -7,5 +7,8 @@ class Sample extends Web_Controller{
         parent::__construct();
     }
 
-    function index(){}
+    function index(){
+        $this->notif->addFlash('from sample');
+        redirect('login');
+    }
 }

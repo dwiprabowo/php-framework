@@ -7,7 +7,9 @@ class Login extends Web_Controller{
         parent::__construct();
     }
 
-    public function index(){}
+    public function index(){
+        $this->notif->add('tes');
+    }
 
     public function index_post(){
         $this->validate->setRules([

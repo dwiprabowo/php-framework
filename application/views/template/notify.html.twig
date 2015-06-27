@@ -1,0 +1,12 @@
+<script>
+    {% for item in notify %}
+        {% if item.type and item.message %}
+            setTimeout(function(){
+                new PNotify({
+                    text: '{{ item.message }}',
+                    type: '{{ item.type }}',
+                });
+            }, {{ item.timeout }} );
+        {% endif %}
+    {% endfor %}
+</script>
