@@ -14,7 +14,8 @@ class Login extends Web_Controller{
             'email ~ required|valid_email',
             'password ~ required',
         ]);
-        $this->validate->run();
+        if($this->validate->run() == false){
+        }
     }
 
     function _models(){

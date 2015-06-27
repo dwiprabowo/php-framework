@@ -43,10 +43,14 @@ abstract class Web_Controller extends MY_Controller{
         }
 
         if($call_method){
-            call_user_func_array(
-                [$this, $call_method]
-                , $args
-            );
+            try{
+                call_user_func_array(
+                    [$this, $call_method]
+                    , $args
+                );
+            }catch(Exception $e){
+                error_message($e->getMessage());
+            }
         }
     }
 
@@ -55,8 +59,8 @@ abstract class Web_Controller extends MY_Controller{
         $this->_request();
         $this->_initTwig();
         $this->validate->set_error_delimiters(
-            '<label class="control-label">'
-            , '</label>'
+            ''
+            , ''
         );
         if(defined('ENABLE_PROFILER') AND ENABLE_PROFILER){
             $this->output->enable_profiler(true);
@@ -85,6 +89,7 @@ abstract class Web_Controller extends MY_Controller{
             'set_value',
             'form_error',
             'twbs',
+            'twbs_input',
         ];
     }
 
