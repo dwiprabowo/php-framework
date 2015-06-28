@@ -5,6 +5,9 @@ class Login extends Web_Controller{
 
     function __construct(){
         parent::__construct();
+        if($this->login_model->ready()){
+            redirect('home');
+        }
     }
 
     public function index(){}
@@ -14,11 +17,19 @@ class Login extends Web_Controller{
             'email ~ required|valid_email',
             'password ~ required',
         ]);
-        $this->validate->run();
+        if($this->validate->run()){
+            $this->login();
+        }
+    }
+
+    function login(){
+        extract($this->input->post());
+        $this->login_model->signIn($email, $password)
+        or $this->notif->add('Invalid user login!');
     }
 
     function _models(){
-        return ['user'];
+        return ['login'];
     }
 
 }

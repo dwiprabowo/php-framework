@@ -23,7 +23,8 @@ class MY_Form_validation extends CI_Form_validation{
                 list($field, $rule) = $items;
                 $label = ucwords($field);
             }
-            $item = compact('field', 'label', 'rule');
+            $rules = $rule;
+            $item = compact('field', 'label', 'rules');
             array_push($result, $item);
         }
         return $result;

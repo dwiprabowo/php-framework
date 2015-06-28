@@ -14,9 +14,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $hook['post_controller'] = [
     [
-        'class' => 'Toast',
-        'function' => 'collect',
-        'filename' => 'toast.php',
+        'class' => 'NotifyCollector',
+        'function' => 'run',
+        'filename' => 'notify_collector.php',
         'filepath' => 'hooks',
     ],
     [

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends Web_Controller{
 
@@ -7,5 +7,5 @@ class Home extends Web_Controller{
         parent::__construct();
     }
 
-    function index(){}
+    public function index(){}
 }

@@ -3,14 +3,14 @@
 {% block title %}Login{% endblock %}
 
 {% block style %}
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400' rel='stylesheet' type='text/css'>
     <style>
         body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #eee;
+            font-family: 'Ubuntu';
+            margin-top: 9%;
         }
         .form-signin {
-            max-width: 330px;
+            max-width: 360px;
             padding: 15px;
             margin: 0 auto;
         }
@@ -33,36 +33,39 @@
         .form-signin .form-control:focus {
             z-index: 2;
         }
+        .form-signin .panel-body input{
+            text-align: center;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <form class="form-signin" method="post">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input 
-                type="text" 
-                name="email" 
-                id="email" 
-                class="form-control" 
-                placeholder="Email address" 
-                autofocus
-            >
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input 
-                type="password" 
-                name="password" 
-                id="inputPassword" 
-                class="form-control" 
-                placeholder="Password" 
-            >
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4 class="text-info">
+                        <i class="fa fa-user"></i>
+                        User Login
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    {{ twbs_input('email')|raw }}
+                    {{ twbs_input({
+                        'name': 'password',
+                        'type': 'password',
+                    })|raw }}
+                </div>
+                <div class="panel-footer">
+                    <button 
+                        class="btn btn-lg btn-info btn-block" 
+                        type="submit"
+                    >
+                        <i class="fa fa-sign-in"></i>
+                        Sign In
+                    </button>
+                </div>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div> <!-- /container -->
 {% endblock %}
