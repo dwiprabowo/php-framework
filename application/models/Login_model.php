@@ -17,7 +17,7 @@ class Login_model extends CI_Model{
         ]) and $this->setData($result);
         if(!$result)return false;
         $this->notif->addFlash('Successfully Login!', 'success');
-        redirect('dashboard');
+        redirect('home');
     }
 
     function signOut(){
