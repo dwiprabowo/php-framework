@@ -5,6 +5,8 @@ class NotifyCollector{
     
     function run(){
         $CI =& get_instance();
-        $CI->notif->collect();
+        if(isset($CI->notif)){
+            $CI->notif->collect();
+        }
     }
 }
