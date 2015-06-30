@@ -89,6 +89,7 @@ abstract class Web_Controller extends MY_Controller{
             'form_error',
             'twbs',
             'twbs_input',
+            'twbs_h_input',
         ];
     }
 

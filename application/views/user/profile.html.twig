@@ -1,7 +1,79 @@
 {% extends 'template/twbs_bootstrap.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}User Profile{% endblock %}
 
 {% block content %}
     {% include 'template/partial/navbar.html.twig' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>
+                    <i class="fa fa-user"></i>
+                    User Profile
+                </h1>
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ twbs_h_input({
+                                    'name': 'fullname',
+                                    'label': 'Full Name',
+                                })|raw }}
+                                {{ twbs_h_input({
+                                    'name': 'birth[date]',
+                                    'label': 'Birth Date',
+                                })|raw }}
+                                {{ twbs_h_input({
+                                    'name': 'birth[place]',
+                                    'label': 'Birth Place',
+                                })|raw }}
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4">
+                                        Gender
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input 
+                                                type="radio" 
+                                                name="inlineRadioOptions" 
+                                                id="inlineRadio1" 
+                                                value="option1"> Male
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input 
+                                                type="radio" 
+                                                name="inlineRadioOptions" 
+                                                id="inlineRadio2" 
+                                                value="option2"> Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ twbs_h_input('profession')|raw }}
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4">
+                                        Address
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <input 
+                            type="submit" 
+                            value="Update" 
+                            class="btn btn-primary btn-block">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

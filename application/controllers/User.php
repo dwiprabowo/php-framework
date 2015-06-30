@@ -7,5 +7,12 @@ class User extends Auth_Controller{
         parent::__construct();
     }
 
-    function profile(){}
+    function profile_post(){
+        $this->validate->setRules([
+            'fullname ~ Full Name ~ required',
+        ]);
+        if(!$this->validate->run()){
+            $this->notif->add('Please fix form');
+        }
+    }
 }
