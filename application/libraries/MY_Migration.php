@@ -126,7 +126,9 @@ class MY_Migration extends CI_Migration{
             $this->dbforge->add_field($fields);
         }
         if($this->keys){
-            $this->dbforge->add_key($this->keys);
+            foreach ($this->keys as $k => $v) {
+                $this->dbforge->add_key($v);
+            }
         }
         $this->dbforge->create_table(self::tableName());
         d(" > table [".self::tableName()."] created");

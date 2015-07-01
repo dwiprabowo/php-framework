@@ -1,7 +1,29 @@
 {% extends 'template/twbs_bootstrap.html.twig' %}
 
 {% block title %}User Profile{% endblock %}
-
+{% block style %}
+    <style>
+        @media (min-width: 1200px){
+            div#form-update-profile{
+                margin-top: 5%;
+                display: table;
+            }
+            div#form-update-profile div.table-row{
+                display: table-row;
+            }
+            div#form-update-profile div.table-row div.table-cell{
+                display: table-cell;
+                width: 50%;
+                vertical-align: top;
+            }
+        }
+        img#profile-picture-preview{
+            max-width: 140px;
+            max-height: 160px;
+            border: 1px solid rgba(0, 0, 0, .3);
+        }
+    </style>
+{% endblock %}
 {% block content %}
     {% include 'template/partial/navbar.html.twig' %}
     <div class="container">
@@ -12,55 +34,76 @@
                     User Profile
                 </h1>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <div class="col-sm-6">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                {{ twbs_h_input({
-                                    'name': 'fullname',
-                                    'label': 'Full Name',
-                                })|raw }}
-                                {{ twbs_h_input({
-                                    'name': 'birth[date]',
-                                    'label': 'Birth Date',
-                                })|raw }}
-                                {{ twbs_h_input({
-                                    'name': 'birth[place]',
-                                    'label': 'Birth Place',
-                                })|raw }}
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4">
-                                        Gender
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <label class="radio-inline">
+                    <div id="form-update-profile" class="table col-sm-12">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <div class="form-group">
+                                            <label 
+                                                for="profile_picture">
+                                                <img
+                                                    id="profile-picture-preview"
+                                                    class="img-responsive" 
+                                                    alt="Profile Picture"
+                                                    src="{{ twbs('docs/apple-touch-icon.png') }}"
+                                                    >
+                                            </label>
                                             <input 
-                                                type="radio" 
-                                                name="inlineRadioOptions" 
-                                                id="inlineRadio1" 
-                                                value="option1"> Male
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input 
-                                                type="radio" 
-                                                name="inlineRadioOptions" 
-                                                id="inlineRadio2" 
-                                                value="option2"> Female
-                                        </label>
+                                                type="file" 
+                                                name="profile_picture"
+                                                id="profile_picture"
+                                                class="form-control"
+                                                style="display: none;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ twbs_h_input({
+                                            'name': 'fullname',
+                                            'label': 'Full Name',
+                                        })|raw }}
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4">
+                                                Gender
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <label class="radio-inline">
+                                                    <input 
+                                                        type="radio" 
+                                                        name="inlineRadioOptions" 
+                                                        id="inlineRadio1" 
+                                                        value="option1"> Male
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input 
+                                                        type="radio" 
+                                                        name="inlineRadioOptions" 
+                                                        id="inlineRadio2" 
+                                                        value="option2"> Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                        {{ twbs_h_input({
+                                            'name': 'birth[date]',
+                                            'label': 'Birth Date',
+                                        })|raw }}
+                                        {{ twbs_h_input({
+                                            'name': 'birth[place]',
+                                            'label': 'Birth Place',
+                                        })|raw }}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="table-cell">
+                                {{ twbs_h_input('phone')|raw }}
                                 {{ twbs_h_input('profession')|raw }}
                                 <div class="form-group">
                                     <label class="control-label col-sm-4">
                                         Address
                                     </label>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control"
+                                            rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -76,4 +119,22 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function readURL(input, target) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(target).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#profile_picture").on('change', function(){
+            readURL(this, "#profile-picture-preview");
+        });
+    </script>
 {% endblock %}
