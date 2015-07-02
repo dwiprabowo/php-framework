@@ -46,7 +46,7 @@
                                                     id="profile-picture-preview"
                                                     class="img-responsive" 
                                                     alt="Profile Picture"
-                                                    src="{{ twbs('docs/apple-touch-icon.png') }}"
+                                                    src="{{ base_url('assets/img/profile-picture-default.png') }}"
                                                     >
                                             </label>
                                             <input 
@@ -62,7 +62,9 @@
                                             'name': 'fullname',
                                             'label': 'Full Name',
                                         })|raw }}
-                                        <div class="form-group">
+                                        <div class="form-group{% if form_error('gender') %}
+                                            {{ ' has-error' }}
+                                            {% endif %}">
                                             <label class="control-label col-sm-4">
                                                 Gender
                                             </label>
@@ -70,25 +72,32 @@
                                                 <label class="radio-inline">
                                                     <input 
                                                         type="radio" 
-                                                        name="inlineRadioOptions" 
-                                                        id="inlineRadio1" 
-                                                        value="option1"> Male
+                                                        name="gender" 
+                                                        {{ set_value('gender') == 'm'?'checked':'' }}
+                                                        value="m"> Male
                                                 </label>
                                                 <label class="radio-inline">
                                                     <input 
                                                         type="radio" 
-                                                        name="inlineRadioOptions" 
-                                                        id="inlineRadio2" 
-                                                        value="option2"> Female
+                                                        name="gender" 
+                                                        {{ set_value('gender') == 'f'?'checked':'' }}
+                                                        value="f"> Female
                                                 </label>
+                                                <div>
+                                                    {% if form_error('gender') %}
+                                                        <sub 
+                                                            class="bg-danger text-danger"
+                                                            >{{ form_error('gender') }}</sub>
+                                                    {% endif %} 
+                                                </div>
                                             </div>
                                         </div>
                                         {{ twbs_h_input({
-                                            'name': 'birth[date]',
+                                            'name': 'birth_date',
                                             'label': 'Birth Date',
                                         })|raw }}
                                         {{ twbs_h_input({
-                                            'name': 'birth[place]',
+                                            'name': 'birth_place',
                                             'label': 'Birth Place',
                                         })|raw }}
                                     </div>
@@ -97,15 +106,10 @@
                             <div class="table-cell">
                                 {{ twbs_h_input('phone')|raw }}
                                 {{ twbs_h_input('profession')|raw }}
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4">
-                                        Address
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control"
-                                            rows="3"></textarea>
-                                    </div>
-                                </div>
+                                {{ twbs_h_textarea({
+                                    'name': 'address',
+                                    'rows': 3,
+                                })|raw }}
                             </div>
                         </div>
                     </div>

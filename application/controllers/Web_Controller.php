@@ -90,6 +90,8 @@ abstract class Web_Controller extends MY_Controller{
             'twbs',
             'twbs_input',
             'twbs_h_input',
+            'twbs_textarea',
+            'twbs_h_textarea',
         ];
     }
 
