@@ -51,6 +51,7 @@ abstract class Web_Controller extends MY_Controller{
     function _init(){
         $this->load->library('form_validation', null, 'validate');
         $this->load->library('notify', null, 'notif');
+        $this->load->library('autoCorrect', null, 'ac');
 
         $this->_request();
         $this->_initTwig();
