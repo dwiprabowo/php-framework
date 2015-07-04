@@ -3,18 +3,17 @@
 {% block title %}User Profile{% endblock %}
 {% block style %}
     <style>
-        @media (min-width: 1200px){
-            div#form-update-profile{
-                margin-top: 5%;
-                display: table;
+        #profile-picture-container{
+            text-align: center;
+        }
+        @media (min-width: 768px){
+            #profile-picture-container{
+                text-align: right;
             }
-            div#form-update-profile div.table-row{
-                display: table-row;
-            }
-            div#form-update-profile div.table-row div.table-cell{
-                display: table-cell;
-                width: 50%;
-                vertical-align: top;
+        }
+        @media (min-width: 992px){
+            #profile-picture-container{
+                text-align: center;
             }
         }
         img#profile-picture-preview{
@@ -29,97 +28,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>
-                    <i class="fa fa-user"></i>
-                    User Profile
-                </h1>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <div id="form-update-profile" class="table col-sm-12">
-                        <div class="table-row">
-                            <div class="table-cell">
-                                <div class="row">
-                                    <div class="col-md-4 text-center">
-                                        <div class="form-group">
-                                            <label 
-                                                for="profile_picture">
-                                                <img
-                                                    id="profile-picture-preview"
-                                                    class="img-responsive" 
-                                                    alt="Profile Picture"
-                                                    src="{{ base_url('assets/img/profile-picture-default.png') }}"
-                                                    >
-                                            </label>
-                                            <input 
-                                                type="file" 
-                                                name="profile_picture"
-                                                id="profile_picture"
-                                                class="form-control"
-                                                style="display: none;">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        {{ twbs_h_input({
-                                            'name': 'fullname',
-                                            'label': 'Full Name',
-                                        })|raw }}
-                                        <div class="form-group{% if form_error('gender') %}
-                                            {{ ' has-error' }}
-                                            {% endif %}">
-                                            <label class="control-label col-sm-4">
-                                                Gender
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <label class="radio-inline">
-                                                    <input 
-                                                        type="radio" 
-                                                        name="gender" 
-                                                        {{ set_value('gender') == 'm'?'checked':'' }}
-                                                        value="m"> Male
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input 
-                                                        type="radio" 
-                                                        name="gender" 
-                                                        {{ set_value('gender') == 'f'?'checked':'' }}
-                                                        value="f"> Female
-                                                </label>
-                                                <div>
-                                                    {% if form_error('gender') %}
-                                                        <sub 
-                                                            class="bg-danger text-danger"
-                                                            >{{ form_error('gender') }}</sub>
-                                                    {% endif %} 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{ twbs_h_input({
-                                            'name': 'birth_date',
-                                            'label': 'Birth Date',
-                                        })|raw }}
-                                        {{ twbs_h_input({
-                                            'name': 'birth_place',
-                                            'label': 'Birth Place',
-                                        })|raw }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="table-cell">
-                                {{ twbs_h_input('phone')|raw }}
-                                {{ twbs_h_input('profession')|raw }}
-                                {{ twbs_h_textarea({
-                                    'name': 'address',
-                                    'rows': 3,
-                                })|raw }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <input 
-                            type="submit" 
-                            value="Update" 
-                            class="btn btn-primary btn-block">
-                    </div>
-                </form>
+                {% include 'user/profile/form.html.twig'%}
             </div>
         </div>
     </div>

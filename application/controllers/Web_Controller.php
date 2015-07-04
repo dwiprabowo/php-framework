@@ -13,11 +13,6 @@ abstract class Web_Controller extends MY_Controller{
     private $var = [];
     private $request;
 
-    function __construct(){
-        parent::__construct();
-        $this->_init();
-    }
-
     function _request(){
         $this->request = new stdClass();
         $this->request->method = $this->_detect_method();
