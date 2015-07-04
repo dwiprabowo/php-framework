@@ -46,6 +46,9 @@
         <link href="{{ 
             base_url('assets/thirdparty/pnotify/pnotify.custom.min.css') 
         }}" media="all" rel="stylesheet" type="text/css" />
+        <link href="{{ 
+            base_url('assets/thirdparty/bootstrap-datepicker/css/bootstrap-datepicker.css') 
+        }}" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body>
         {% block content %}{% endblock %}
@@ -67,6 +70,9 @@
         }}"></script>
         <script type="text/javascript" src="{{ 
             base_url('assets/thirdparty/pnotify/pnotify.custom.min.js') }}">
+        </script>
+        <script type="text/javascript" src="{{ 
+            base_url('assets/thirdparty/bootstrap-datepicker/js/bootstrap-datepicker.js') }}">
         </script>
         {% include 'template/notify.html.twig' %}
         {% block script %}{% endblock %}

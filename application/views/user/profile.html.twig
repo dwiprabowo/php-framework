@@ -49,5 +49,16 @@
         $("#profile_picture").on('change', function(){
             readURL(this, "#profile-picture-preview");
         });
+
+        $("#birth_date").datepicker({
+            format: 'yyyy-mm-dd',
+            orientation: 'top auto',
+            startDate: '-100y',
+            endDate: '0',
+            defaultViewDate: { 
+                year: ((new Date()).getFullYear() - 25),
+                month: ((new Date()).getMonth()),
+            }
+        });
     </script>
 {% endblock %}
