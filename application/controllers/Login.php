@@ -25,7 +25,7 @@ class Login extends Web_Controller{
     function login(){
         extract($this->input->post());
         $this->login_model->signIn($email, $password)
-        or $this->notif->add('Invalid user login!');
+        or $this->notif->add(t('message_invalid_user_login_info'));
     }
 
     function _models(){

@@ -1,6 +1,36 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('t')){
+    function t($key){
+        return lang($key);
+    }
+}
+
+if(!function_exists('country')){
+    function country($code){
+        return @config_item($code)[$code];
+    }
+}
+
+if(!function_exists('active_if_lang')){
+    function active_if_lang($lang){
+        if(is_lang($lang)){
+            return " active";
+        }
+        return "";
+    }
+}
+
+if(!function_exists('is_lang')){
+    function is_lang($lang){
+        if($lang === config_item('language')){
+            return true;
+        }
+        return false;
+    }
+}
+
 if(!function_exists('clean_string')){
     function clean_string($input){
         $result = preg_replace('!\s+!', ' ', $input);

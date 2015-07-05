@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang('common_lang_code') }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,9 @@
         <link href="{{ 
             base_url('vendor/fortawesome/font-awesome/css/font-awesome.min.css')
         }}" rel="stylesheet">
+        <link href="{{ 
+            base_url('vendor/components/flag-icon-css/css/flag-icon.css')
+        }}" rel="stylesheet">
         <!--<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>-->
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
         <style>
@@ -25,11 +28,28 @@
                 margin-bottom: 32px;
             }
             .ui-pnotify{
-                width: 220px !important;
                 right: 10px !important;
             }
             .ui-pnotify-sticker{
                 display: none;
+            }
+            footer.footer{
+                margin-top: 32px;
+            }
+            .flag-wrapper{
+                opacity: .7;
+                display: inline-block;
+                box-shadow: 0 0 2px black;
+                background-size: cover;
+                cursor: pointer;
+            }
+            .flag-wrapper.active{
+                opacity: 1;
+                box-shadow: 0 0 2px green;
+                cursor: default;
+            }
+            .flag-icon{
+                width: 24px;
             }
         </style>
         {% block style %}{% endblock %}
@@ -52,6 +72,38 @@
     </head>
     <body>
         {% block content %}{% endblock %}
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>
+                            <div 
+                                class="flag-wrapper {{ 
+                                    active_if_lang('indonesian')
+                                }}" 
+                                title="{{ lang('common_indonesian') }}"
+                            >
+                                <span class="flag-icon flag-icon-id"></span>
+                            </div>
+                            <div 
+                                class="flag-wrapper {{ 
+                                    active_if_lang('english')
+                                }}" 
+                                title="{{ lang('common_english') }}"
+                            >
+                                <span class="flag-icon flag-icon-us"></span>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <p class="text-muted">
+                    &copy;<a href="{{ base_url() }}">{{ 
+                        constant('PROJECT_NAME') 
+                    }}</a>
+                    2014-{{ 'now'|date('Y') }}.
+                </p>
+            </div>
+        </footer>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
