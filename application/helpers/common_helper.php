@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('base_domain')){
+    function base_domain($code = false){
+        return 'http://'.strtolower($code).($code?'.':'').PROJECT_DOMAIN;
+    }
+}
+
 if(!function_exists('t')){
     function t($key){
         return lang($key);

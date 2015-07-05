@@ -104,6 +104,7 @@ abstract class Web_Controller extends MY_Controller{
             'lang',
             ['config_item', 'config'],
             'active_if_lang',
+            'base_domain',
         ];
     }
 
