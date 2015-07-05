@@ -8,3 +8,11 @@ if(!function_exists('clean_string')){
         return $result;
     }
 }
+
+if(!function_exists('clean_spaces')){
+    function clean_spaces($input){
+        $result = preg_replace('!\s+!', '', $input);
+        $result = trim($result);
+        return $result;
+    }
+}

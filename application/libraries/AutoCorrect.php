@@ -6,7 +6,7 @@ class AutoCorrect{
     const ITEM_NAME = 0, RULE_NAME = 1;
 
     private $availableCore = [
-        'name', 'phone'
+        'name', 'email'
     ];
 
     function __construct(){
@@ -22,5 +22,9 @@ class AutoCorrect{
 
     private function c_name($value){
         return ucwords(strtolower(clean_string($value)));
+    }
+
+    private function c_email($value){
+        return strtolower(clean_spaces($value));
     }
 }

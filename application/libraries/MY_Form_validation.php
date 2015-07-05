@@ -33,16 +33,14 @@ class MY_Form_validation extends CI_Form_validation{
     }
 
     protected function _execute($row, $rules, $postdata = NULL, $cycles = 0){
-        parent::_execute($row, $rules, $postdata, $cycles);
         $field = $row['field'];
         $rules = $row['rules'];
         $autocorrect = @$this->autocorrect[$field][AutoCorrect::RULE_NAME];
         if(!is_array($postdata) and $autocorrect){
-            $error = @$this->_error_array[$field];
-            if(!$error){
-                $this->_field_data[$field]['postdata'] = $this->CI->ac->run($postdata, $autocorrect);
-            }
+            $this->_field_data[$field]['postdata'] = 
+                $this->CI->ac->run($postdata, $autocorrect);
         }
+        parent::_execute($row, $rules, $postdata, $cycles);
     }
 
     private function buildAutoCorrect($field, $rules){
@@ -68,6 +66,16 @@ class MY_Form_validation extends CI_Form_validation{
         $pattern = '/^autocorrect\[([a-z]{4,})\]$/';
         preg_match($pattern, $subject, $result);
         return $result;
+    }
+
+    // validation
+
+    function alpha_space($str){
+        return (bool) preg_match('/^[A-Z ]+$/i', $str);
+    }
+
+    function valid_date($str){
+        return (bool) (date('Y-m-d', strtotime($str)) === $str);
     }
 
 }
