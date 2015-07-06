@@ -1,6 +1,39 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('lang_url_prefix')){
+    function lang_url_prefix($key){
+        return "_".$key;
+    }
+}
+
+if(!function_exists('url')){
+    function url($uri){
+        $uri = implode(
+            '/'
+            , array_map(
+                't'
+                , array_map(
+                    'lang_url_prefix'
+                    , array_filter(explode('/', $uri))
+                )
+            )
+        );
+        return base_url($uri);
+    }
+}
+
+if(!function_exists('notif')){
+    function notif($key, $flash = true){
+        $CI =& get_instance();
+        $method_name = 'addFlash';
+        if(!$flash){
+            $method_name = 'add';
+        }
+        $CI->notif->{$method_name}(t($key));
+    }
+}
+
 if(!function_exists('base_domain')){
     function base_domain($code = false){
         return 'http://'.strtolower($code).($code?'.':'').PROJECT_DOMAIN;

@@ -23,8 +23,16 @@
                         aria-expanded="false"
                     >User <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ base_url('user/profile') }}">Profile</a></li>
-                        <li><a href="{{ base_url('logout') }}">Logout</a></li>
+                        <li>
+                            <a href="{{ url('user/profile') }}">
+                                {{ t('common_profile') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('logout') }}">
+                                {{ t('common_signout') }}
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
