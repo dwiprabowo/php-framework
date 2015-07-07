@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.2.4",
-		"twig/twig": "2.0.*@dev",
+		"twig/twig": "1.18.2",
         "twbs/bootstrap": "3.3.4",
         "components/jquery": "2.1.4",
         "fortawesome/font-awesome": "4.3.0",

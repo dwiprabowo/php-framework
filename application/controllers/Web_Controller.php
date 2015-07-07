@@ -82,9 +82,9 @@ abstract class Web_Controller extends MY_Controller{
     function _generateTwigFilter(){
         foreach ($this->_twigFilter() as $k => $v) {
             if(is_array($v)){
-                $filter = new Twig_Function($v[0], $v[1]);
+                $filter = new Twig_SimpleFunction($v[0], $v[1]);
             }else{
-                $filter = new Twig_Function($v, $v);
+                $filter = new Twig_SimpleFunction($v, $v);
             }
             $this->twig->addFunction($filter);
         }

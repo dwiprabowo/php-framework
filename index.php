@@ -1,12 +1,26 @@
 <?php
 
+ini_set('display_errors', 1);
+
 define('DS', DIRECTORY_SEPARATOR);
 define('EXT', '.php');
 
 require_once __DIR__.DS.'constants'.EXT;
-require_once __DIR__.DS.'preconfig'.EXT;
+try{
+	if(!@include_once(PRECONFIG)){
+		throw new Exception("File not found: ".PRECONFIG);
+	}else{
+		require_once PRECONFIG;
+	}
+	if(!@include_once(VENDOR)){
+		throw new Exception("File not found: ".VENDOR);
+	}else{
+		require_once VENDOR;
+	}
+}catch(Exception $e){
+	exit($e->getMessage());
+}
 require_once __DIR__.DS.'helper'.EXT;
-require_once __DIR__.DS.'vendor/autoload'.EXT;
 
 /**
  * CodeIgniter
