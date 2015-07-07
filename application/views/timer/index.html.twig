@@ -1,0 +1,107 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block title %}Timer{% endblock %}
+
+{% block style %}
+    <style>
+        body{
+            margin-top: 80px;
+        }
+        #main{
+            border: 16px solid rgba(0, 0, 0, .1);
+            display: inline-block;
+            padding: 99px 35px;
+            border-radius: 132px;
+        }
+        #button-group{
+            position: relative;
+            top: -32px;
+        }
+        #button-group .btn{
+            box-shadow: 0px 4px 16px #777;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1 id="main">
+                    00:00:00.0
+                </h1>
+                <div id="button-group" class="text-center">
+                    <button 
+                        class="btn btn-danger" 
+                        id="reset" 
+                    >
+                        <i class="fa fa-repeat"></i>
+                    </button>
+                    <button class="btn btn-lg btn-primary" id="trigger">
+                        <i class="fa fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var run = false;
+        $("#reset").click(function(){
+            var proceed = confirm("Are You sure?");
+            if(proceed){
+                counter = 0;
+                run = false;
+                $("#main").text("00:00:00.0");
+                var ic = $("#trigger").find('i');
+                if(ic.hasClass('fa-pause')){
+                    ic.removeClass('fa-pause');
+                    ic.addClass('fa-play');
+                }
+            }
+        })
+        $("#trigger").click(function(){
+            var ic = $(this).find('i');
+            if(ic.hasClass('fa-play')){
+                ic.removeClass('fa-play');
+                ic.addClass('fa-pause');
+            }else{
+                ic.removeClass('fa-pause');
+                ic.addClass('fa-play');
+            }
+            run = !run;
+        });
+        var counter = 0;
+        setInterval(function(){
+            if(!run)return;
+            var ms = (counter*100);
+            var seconds = Math.floor(ms/1000);
+            var minutes = Math.floor(seconds/60);
+            var hours = Math.floor(minutes/60);
+
+            var ms = ms%1000;
+            var second = seconds%60;
+            var minute = minutes%60;
+
+            // console.log(
+            //     'hours', hours
+            //     , 'minute', minute
+            //     , 'second', second
+            // );
+
+            var time = {
+                hours: hours,
+                minutes: minute,
+                seconds: second,
+                milliseconds: ms,
+            };
+
+            var value = moment(time).format("HH:mm:ss.S");
+            $("#main").text(value);
+
+            counter++;
+        }, 100);
+    </script>
+{% endblock %}
