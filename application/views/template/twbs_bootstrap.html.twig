@@ -139,6 +139,48 @@
             base_url('assets/thirdparty/bootstrap-datepicker/js/bootstrap-datepicker.js') }}">
         </script>
         {% include 'template/notify.html.twig' %}
+        <script>
+            /* function list */
+
+            function autoFocus(){
+                var inputs = $("input");
+                var found = false;
+                for(var i = 0;i < inputs.length;i++){
+                    var input = inputs[i];
+                    if(input.value === '' || $(input).parent().hasClass('has-error')){
+                        input.focus();
+                        if(input.value !== ''){
+                            setCaretToPos(input, input.value.length);
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    var input = $("input")[0];
+                    setCaretToPos(input, input.value.length);
+                }
+            }
+
+            function setSelectionRange(input, selectionStart, selectionEnd){
+                if(input.setSelectionRange){
+                    input.focus();
+                    input.setSelectionRange(selectionStart, selectionEnd);
+                }else if(input.createTextRange){
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', selectionEnd);
+                    range.moveStart('character', selectionStart);
+                    range.select();
+                }
+            }
+
+            function setCaretToPos(input, pos){
+                setSelectionRange(input, pos, pos);
+            }
+
+            /* function list */
+        </script>
         {% block script %}{% endblock %}
     </body>
 </html>

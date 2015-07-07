@@ -69,7 +69,7 @@ abstract class Web_Controller extends MY_Controller{
         if($lang){
             $this->idiom = $lang;
         }
-        $this->lang->load(['common', 'message'], $this->idiom);
+        $this->lang->load(['common', 'message', 'uri'], $this->idiom);
         $oops = $this->lang->line('common_hello'); 
     }
 
@@ -107,6 +107,8 @@ abstract class Web_Controller extends MY_Controller{
             'base_domain',
             'd',
             'is_lang',
+            't',
+            'url',
         ];
     }
 

@@ -16,13 +16,19 @@ class Login_model extends CI_Model{
             'password' => md5($password),
         ]) and $this->setData($result);
         if(!$result)return false;
-        $this->notif->addFlash('Successfully Login!', 'success');
+        $this->notif->addFlash(
+            t('message_successfully_login')
+            , 'success'
+        );
         redirect('dashboard');
     }
 
     function signOut(){
         $this->deleteData();
-        $this->notif->addFlash('Successfully Logout!', 'info');
+        $this->notif->addFlash(
+            t('message_successfully_logout')
+            , 'info'
+        );
         redirect('login');
     }
 

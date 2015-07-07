@@ -15,7 +15,7 @@ class User extends Auth_Controller{
             'address ~ Address ~ required',
         ]);
         if(!$this->validate->run()){
-            $this->notif->add('Please fix form');
+            notif('message_form_input_error', false);
         }else{
 
         }
