@@ -91,7 +91,7 @@ $autoload['drivers'] = array();
 */
 
 $autoload['helper'] = [
-    'url', 'common', 'form', 'twbs'
+    'url', 'common', 'form', 'twbs', 'language',
 ];
 
 

@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b8e8612bd44ad3070b87eb3901b7b9a0",
+    "hash": "80fc71655fadda70e189143f661f258f",
     "packages": [
+        {
+            "name": "components/flag-icon-css",
+            "version": "0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lipis/flag-icon-css.git",
+                "reference": "db9d702ac15e74a84d5d859c9f3b1ce4c1882304"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/db9d702ac15e74a84d5d859c9f3b1ce4c1882304",
+                "reference": "db9d702ac15e74a84d5d859c9f3b1ce4c1882304",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "name": "flag-icon-css",
+                    "files": [
+                        "less/**",
+                        "css/**",
+                        "flags/**"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Panayiotis Lipiridis (Lipis)",
+                    "email": "lipiridis@gmail.com"
+                }
+            ],
+            "description": "CSS for vector based country flags",
+            "time": "2015-03-26 16:41:06"
+        },
         {
             "name": "components/jquery",
             "version": "2.1.4",
@@ -97,6 +135,66 @@
             "time": "2015-01-22 18:09:42"
         },
         {
+            "name": "giggsey/libphonenumber-for-php",
+            "version": "7.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/giggsey/libphonenumber-for-php.git",
+                "reference": "c1c2ab9144479c4a67286d8f150d82770aca9400"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/c1c2ab9144479c4a67286d8f150d82770aca9400",
+                "reference": "c1c2ab9144479c4a67286d8f150d82770aca9400",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*"
+            },
+            "require-dev": {
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6",
+                "symfony/console": "~2.4"
+            },
+            "suggest": {
+                "ext-intl": "To use the geocoder and carrier mapping"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "libphonenumber": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Joshua Gigg",
+                    "email": "giggsey@gmail.com",
+                    "homepage": "http://giggsey.com/"
+                }
+            ],
+            "description": "PHP Port of Google's libphonenumber",
+            "homepage": "https://github.com/giggsey/libphonenumber-for-php",
+            "keywords": [
+                "geocoding",
+                "geolocation",
+                "libphonenumber",
+                "mobile",
+                "phonenumber",
+                "validation"
+            ],
+            "time": "2015-06-26 07:56:20"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "v3.3.4",
             "source": {
@@ -153,12 +251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2a08a67108404c8af1555bb9316b59f73fe2f076"
+                "reference": "248de72b17b096e473a70a9ce1b1b4b042c2d7fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2a08a67108404c8af1555bb9316b59f73fe2f076",
-                "reference": "2a08a67108404c8af1555bb9316b59f73fe2f076",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/248de72b17b096e473a70a9ce1b1b4b042c2d7fb",
+                "reference": "248de72b17b096e473a70a9ce1b1b4b042c2d7fb",
                 "shasum": ""
             },
             "require": {
@@ -202,7 +300,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-24 16:24:55"
+            "time": "2015-07-05 06:50:49"
         }
     ],
     "packages-dev": [

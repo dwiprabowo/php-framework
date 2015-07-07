@@ -12,11 +12,7 @@ abstract class Web_Controller extends MY_Controller{
     private $twig;
     private $var = [];
     private $request;
-
-    function __construct(){
-        parent::__construct();
-        $this->_init();
-    }
+    private $idiom = "indonesian";
 
     function _request(){
         $this->request = new stdClass();
@@ -56,14 +52,25 @@ abstract class Web_Controller extends MY_Controller{
     function _init(){
         $this->load->library('form_validation', null, 'validate');
         $this->load->library('notify', null, 'notif');
+        $this->load->library('autoCorrect', null, 'ac');
 
         $this->_request();
         $this->_initTwig();
+        $this->_initLang();
         $this->validate->set_error_delimiters('', '');
         
         if(defined('ENABLE_PROFILER') AND ENABLE_PROFILER){
             $this->output->enable_profiler(true);
         }
+    }
+
+    function _initLang(){
+        $lang = config_item('language');
+        if($lang){
+            $this->idiom = $lang;
+        }
+        $this->lang->load(['common', 'message', 'uri'], $this->idiom);
+        $oops = $this->lang->line('common_hello'); 
     }
 
     function _initTwig(){
@@ -74,7 +81,9 @@ abstract class Web_Controller extends MY_Controller{
 
     function _generateTwigFilter(){
         foreach ($this->_twigFilter() as $k => $v) {
-            if(is_string($v)){
+            if(is_array($v)){
+                $filter = new Twig_Function($v[0], $v[1]);
+            }else{
                 $filter = new Twig_Function($v, $v);
             }
             $this->twig->addFunction($filter);
@@ -89,6 +98,17 @@ abstract class Web_Controller extends MY_Controller{
             'form_error',
             'twbs',
             'twbs_input',
+            'twbs_h_input',
+            'twbs_textarea',
+            'twbs_h_textarea',
+            'lang',
+            ['config_item', 'config'],
+            'active_if_lang',
+            'base_domain',
+            'd',
+            'is_lang',
+            't',
+            'url',
         ];
     }
 

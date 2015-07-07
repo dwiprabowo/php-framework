@@ -3,11 +3,9 @@
 {% block title %}Login{% endblock %}
 
 {% block style %}
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400' rel='stylesheet' type='text/css'>
     <style>
-        body {
-            font-family: 'Ubuntu';
-            margin-top: 9%;
+        body{
+            margin-top: 32px;
         }
         .form-signin {
             max-width: 360px;
@@ -44,10 +42,12 @@
         <form class="form-signin" method="post">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <h4 class="text-info">
-                        <i class="fa fa-user"></i>
-                        User Login
-                    </h4>
+                    <a href="{{ base_url() }}">
+                        <h4 class="text-info">
+                            <i class="fa fa-user"></i>
+                            {{ constant('PROJECT_NAME') }} Login
+                        </h4>
+                    </a>
                 </div>
                 <div class="panel-body">
                     {{ twbs_input('email')|raw }}
@@ -62,10 +62,16 @@
                         type="submit"
                     >
                         <i class="fa fa-sign-in"></i>
-                        Sign In
+                        {{ lang('common_signin') }}
                     </button>
                 </div>
             </div>
         </form>
     </div> <!-- /container -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        autoFocus();
+    </script>
 {% endblock %}

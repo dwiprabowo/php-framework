@@ -21,4 +21,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.swo
 *~
 
+preconfig.php
 assets/php-chunked-xhtml

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang('common_lang_code') }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,41 @@
         <link href="{{ 
             base_url('vendor/fortawesome/font-awesome/css/font-awesome.min.css')
         }}" rel="stylesheet">
+        <link href="{{ 
+            base_url('vendor/components/flag-icon-css/css/flag-icon.css')
+        }}" rel="stylesheet">
+        <!--<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>-->
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                font-family: 'Lato';
+                margin-bottom: 32px;
+            }
+            .ui-pnotify{
+                right: 10px !important;
+            }
+            .ui-pnotify-sticker{
+                display: none;
+            }
+            footer.footer{
+                margin-top: 32px;
+            }
+            .flag-wrapper{
+                opacity: .7;
+                display: inline-block;
+                box-shadow: 0 0 2px black;
+                background-size: cover;
+                cursor: pointer;
+            }
+            .flag-wrapper.active{
+                opacity: 1;
+                box-shadow: 0 0 2px green;
+                cursor: default;
+            }
+            .flag-icon{
+                width: 24px;
+            }
+        </style>
         {% block style %}{% endblock %}
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="{{ twbs('docs/assets/js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
@@ -31,9 +66,56 @@
         <link href="{{ 
             base_url('assets/thirdparty/pnotify/pnotify.custom.min.css') 
         }}" media="all" rel="stylesheet" type="text/css" />
+        <link href="{{ 
+            base_url('assets/thirdparty/bootstrap-datepicker/css/bootstrap-datepicker.css') 
+        }}" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body>
         {% block content %}{% endblock %}
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>
+                            {% if not is_lang('indonesian') %}
+                                <a href="{{ base_domain() }}">
+                            {% endif %}
+                                <div 
+                                    class="flag-wrapper {{ 
+                                        active_if_lang('indonesian')
+                                    }}" 
+                                    title="{{ lang('common_indonesian') }}"
+                                >
+                                    <span class="flag-icon flag-icon-id"></span>
+                                </div>
+                            {% if not is_lang('indonesian') %}
+                                </a>
+                            {% endif %}
+                            {% if not is_lang('english') %}
+                                <a href="{{ base_domain('en-US') }}">
+                            {% endif %}
+                                <div 
+                                    class="flag-wrapper {{ 
+                                        active_if_lang('english')
+                                    }}" 
+                                    title="{{ lang('common_english') }}"
+                                >
+                                    <span class="flag-icon flag-icon-us"></span>
+                                </div>
+                            {% if not is_lang('english') %}
+                                </a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <p class="text-muted">
+                    &copy;<a href="{{ base_url() }}">{{ 
+                        constant('PROJECT_NAME') 
+                    }}</a>
+                    2014-{{ 'now'|date('Y') }}.
+                </p>
+            </div>
+        </footer>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -47,9 +129,58 @@
         <script src="{{
             twbs('docs/assets/js/ie10-viewport-bug-workaround.js')
         }}"></script>
+        <script src="{{
+            twbs('docs/assets/js/docs.min.js')
+        }}"></script>
         <script type="text/javascript" src="{{ 
             base_url('assets/thirdparty/pnotify/pnotify.custom.min.js') }}">
         </script>
+        <script type="text/javascript" src="{{ 
+            base_url('assets/thirdparty/bootstrap-datepicker/js/bootstrap-datepicker.js') }}">
+        </script>
         {% include 'template/notify.html.twig' %}
+        <script>
+            /* function list */
+
+            function autoFocus(){
+                var inputs = $("input");
+                var found = false;
+                for(var i = 0;i < inputs.length;i++){
+                    var input = inputs[i];
+                    if(input.value === '' || $(input).parent().hasClass('has-error')){
+                        input.focus();
+                        if(input.value !== ''){
+                            setCaretToPos(input, input.value.length);
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    var input = $("input")[0];
+                    setCaretToPos(input, input.value.length);
+                }
+            }
+
+            function setSelectionRange(input, selectionStart, selectionEnd){
+                if(input.setSelectionRange){
+                    input.focus();
+                    input.setSelectionRange(selectionStart, selectionEnd);
+                }else if(input.createTextRange){
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', selectionEnd);
+                    range.moveStart('character', selectionStart);
+                    range.select();
+                }
+            }
+
+            function setCaretToPos(input, pos){
+                setSelectionRange(input, pos, pos);
+            }
+
+            /* function list */
+        </script>
+        {% block script %}{% endblock %}
     </body>
 </html>

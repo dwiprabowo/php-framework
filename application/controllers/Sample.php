@@ -8,7 +8,5 @@ class Sample extends Web_Controller{
     }
 
     function index(){
-        $this->notif->addFlash('from sample');
-        redirect('login');
     }
 }
