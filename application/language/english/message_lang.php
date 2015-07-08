@@ -6,3 +6,4 @@ $lang['message_invalid_user_login_info'] = "Invalid user login info.";
 $lang['message_successfully_login'] = "Successfully login.";
 $lang['message_successfully_logout'] = "Successfully Logout.";
 $lang['message_form_input_error'] = "Please fix the form input.";
+$lang['message_please_login'] = "Please login first.";

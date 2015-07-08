@@ -53,6 +53,14 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['masuk'] = 'login';
-$route['keluar'] = 'logout';
-$route['pengguna/profil'] = 'user/profile';
+$route_path = APPPATH.'language/'.config_item('language').DS.'routes'.EXT;
+try{
+    if(!@include_once($route_path)){
+        throw new Exception("File not found: ".$route_path);
+    }else{
+        require_once $route_path;
+    }
+}catch(Exception $e){
+    exit($e->getMessage());
+}
+

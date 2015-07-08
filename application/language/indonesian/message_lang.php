@@ -6,3 +6,4 @@ $lang['message_invalid_user_login_info'] = "User login yang digunakan tidak vali
 $lang['message_successfully_login'] = "Login berhasil.";
 $lang['message_successfully_logout'] = "Logout berhasil.";
 $lang['message_form_input_error'] = "Mohon perbaiki isian form.";
+$lang['message_please_login'] = "Mohon untuk login terlebih dahulu.";

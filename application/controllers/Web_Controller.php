@@ -69,8 +69,7 @@ abstract class Web_Controller extends MY_Controller{
         if($lang){
             $this->idiom = $lang;
         }
-        $this->lang->load(['common', 'message', 'uri'], $this->idiom);
-        $oops = $this->lang->line('common_hello'); 
+        $this->lang->load(['common', 'message'], $this->idiom);
     }
 
     function _initTwig(){

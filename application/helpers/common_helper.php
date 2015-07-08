@@ -26,11 +26,16 @@ if(!function_exists('url')){
 if(!function_exists('notif')){
     function notif($key, $flash = true){
         $CI =& get_instance();
+        $type = false;
+        if(is_array($key)){
+            $type = $key[0];
+            $key = $key[1];
+        }
         $method_name = 'addFlash';
         if(!$flash){
             $method_name = 'add';
         }
-        $CI->notif->{$method_name}(t($key));
+        $CI->notif->{$method_name}(t($key), $type);
     }
 }
 

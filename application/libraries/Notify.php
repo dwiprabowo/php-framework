@@ -8,15 +8,18 @@ class Notify{
 
     function __construct(){}
 
-    function add($message = false, $type = 'error'){
+    function add($message = false, $type = false){
         return $this->core($message, $type);
     }
 
-    function addFlash($message = false, $type = 'error'){
+    function addFlash($message = false, $type = false){
         return $this->core($message, $type, false);
     }
 
-    function core($message = false, $type = "error", $direct = true){
+    function core($message = false, $type = false, $direct = true){
+        if(!$type){
+            $type = 'error';
+        }
         $CI =& get_instance();
         if(!$message){
             return $this->items;
