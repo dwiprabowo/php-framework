@@ -61,6 +61,9 @@ try{
         require_once $route_path;
     }
 }catch(Exception $e){
-    exit($e->getMessage());
+    log_message(
+        'debug'
+        , $e->getMessage().' ~ No problem! default routes should be used ...'
+    );
 }
 

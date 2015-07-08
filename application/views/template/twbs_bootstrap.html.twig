@@ -143,29 +143,56 @@
             /* function list */
 
             function autoFocus(){
-                var inputs = $("input");
+                var inputs = $("input, textarea");
                 var found = false;
                 for(var i = 0;i < inputs.length;i++){
                     var input = inputs[i];
-                    if(input.value === '' || $(input).parent().hasClass('has-error')){
+                    if(
+                        (
+                            input.value === '' 
+                            || 
+                            (
+                                $(input).parent().hasClass('has-error')
+                                ||
+                                $(input).parent().parent().hasClass('has-error')
+                                ||
+                                $(input).parent().parent().parent().hasClass('has-error')
+                            )
+                        )
+                        &&
+                        $(input).is(':visible')
+                    ){
                         input.focus();
                         if(input.value !== ''){
                             setCaretToPos(input, input.value.length);
                         }
+                        // console.log('found!', input);
                         found = true;
                         break;
                     }
                 }
                 if(!found){
                     var input = $("input")[0];
-                    setCaretToPos(input, input.value.length);
+                    if(input){
+                        setCaretToPos(input, input.value.length);
+                        found = true;
+                        // console.log('found!', input);
+                    }else{
+                        // console.log('No input found!');
+                    }
                 }
             }
 
             function setSelectionRange(input, selectionStart, selectionEnd){
                 if(input.setSelectionRange){
                     input.focus();
-                    input.setSelectionRange(selectionStart, selectionEnd);
+                    try{
+                        input.setSelectionRange(selectionStart, selectionEnd);
+                    }catch(e){
+                        console.log("Error from setSelectionRange, but considered as warning!")
+                        console.log("because of", input);
+                        console.log(e);
+                    }
                 }else if(input.createTextRange){
                     var range = input.createTextRange();
                     range.collapse(true);
