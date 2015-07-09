@@ -91,7 +91,7 @@ $autoload['drivers'] = array();
 */
 
 $autoload['helper'] = [
-    'url', 'common', 'form', 'twbs', 'language',
+    'url', 'common', 'form', 'twbs', 'language', 'app',
 ];
 
 
@@ -108,7 +108,7 @@ $autoload['helper'] = [
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('upload');
 
 
 /*

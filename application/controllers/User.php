@@ -23,9 +23,15 @@ class User extends Auth_Controller{
             'occupation ~ required',
             'address ~ required',
         ]);
-        $upload_pp = $this->_doUpload();
+        $previous_pp = $this->login_model->getProfilePicture();
+        $upload_pp = upload_image('profile_picture');
         $this->_var('profile_picture', $upload_pp);
-        if(!$this->validate->run() or !$upload_pp['status']){
+        if(
+            !$this->validate->run() 
+            or 
+            (!$upload_pp['status'])
+        ){
+            $upload_pp['previous_pp'] = $previous_pp;
             $this->_var(
                 'user'
                 , ['profile_picture' => $upload_pp['previous_pp']]
@@ -51,43 +57,6 @@ class User extends Auth_Controller{
                 redirect('user/profile');
             }
         }
-    }
-
-    function _doUpload(){
-        $file_name = 'profile_picture';
-        if(
-            !$_FILES[$file_name]['size'] 
-            and 
-            $this->user_model->get(
-                $this->login_model->getData()
-            )->profile_picture
-        ){
-            return ['status' => true];
-        }
-        $config['upload_path']          = FCPATH.'assets/img/upload/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-
-        if(!file_exists($config['upload_path'])){
-            mkdir($config['upload_path'], 0777, true);
-        }
-
-        $this->load->library('upload', $config);
-        if(!$this->upload->do_upload($file_name)){
-            $result = [
-                'status' => false,
-                'message' => $this->upload->display_errors('', ''),
-                'previous_pp' => $this->login_model->getProfilePicture(),
-            ];
-        }else{
-            $result = [
-                'status' => true,
-                'data' => $this->upload->data(),
-            ];
-        }
-        return $result;
     }
 
     function _models(){

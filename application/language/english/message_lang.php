@@ -9,3 +9,5 @@ $lang['message_form_input_error'] = "Please fix the form input.";
 $lang['message_please_login'] = "Please login first.";
 $lang['message_failed_to_update_user_info'] = "Can't update Your profile, please verify Your input.";
 $lang['message_succeed_update_user_info'] = "Your profile is updated.";
+$lang['message_please_specify_field_name'] = "There is an error code, no field name specified.";
+$lang['message_upload_image_is_ok'] = "No file uploaded, but there is no problem.";
