@@ -23,3 +23,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 preconfig.php
 composer.lock
+
+assets/img/upload/

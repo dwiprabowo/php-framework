@@ -35,7 +35,7 @@ if(!function_exists('notif')){
         if(!$flash){
             $method_name = 'add';
         }
-        $CI->notif->{$method_name}(t($key), $type);
+        $CI->notif->{$method_name}(t($key)?:$key, $type);
     }
 }
 
