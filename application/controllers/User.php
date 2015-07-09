@@ -7,7 +7,7 @@ class User extends Auth_Controller{
         $this->_var(
             'user'
             , $this->user_model->get(
-                $this->login_model->getData()
+                $this->login_model->getId()
             )
         );
     }
@@ -26,6 +26,10 @@ class User extends Auth_Controller{
         $upload_pp = $this->_doUpload();
         $this->_var('profile_picture', $upload_pp);
         if(!$this->validate->run() or !$upload_pp['status']){
+            $this->_var(
+                'user'
+                , ['profile_picture' => $upload_pp['previous_pp']]
+            );
             notif('message_form_input_error', false);
         }else{
             $update_data = $this->input->post(null);
@@ -37,7 +41,7 @@ class User extends Auth_Controller{
                 );
             }
             $result = $this->user_model->update(
-                $this->login_model->getData()
+                $this->login_model->getId()
                 , $update_data
             );
             if(!$result){
@@ -75,6 +79,7 @@ class User extends Auth_Controller{
             $result = [
                 'status' => false,
                 'message' => $this->upload->display_errors('', ''),
+                'previous_pp' => $this->login_model->getProfilePicture(),
             ];
         }else{
             $result = [

@@ -17,11 +17,14 @@
                 <li class="dropdown">
                     <a 
                         href="#" 
-                        class="dropdown-toggle" 
+                        class="dropdown-toggle for-image" 
                         data-toggle="dropdown" 
                         role="button" 
                         aria-expanded="false"
-                    >User <span class="caret"></span></a>
+                    >
+                        <img id="user-login-pp" src="{{ base_url(nav_profile_picture) }}">
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="{{ site_url('user/profile') }}">

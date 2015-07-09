@@ -10,6 +10,12 @@ class Login_model extends CI_Model{
         $this->load->model('user_model');
     }
 
+    function getProfilePicture(){
+        return $this->user_model->getProfilePicture(
+            $this->login_model->getId()
+        );
+    }
+
     function signIn($email, $password){
         $result = $this->user_model->get_by([
             'email' => $email,
@@ -37,7 +43,7 @@ class Login_model extends CI_Model{
         return $result;
     }
 
-    function getData(){
+    function getId(){
         return $this->ready();
     }
 
