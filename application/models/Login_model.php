@@ -37,6 +37,10 @@ class Login_model extends CI_Model{
         return $result;
     }
 
+    function getData(){
+        return $this->ready();
+    }
+
     function setData($user){
         $this->session->set_userdata(
             self::KEYWORD

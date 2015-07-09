@@ -30,11 +30,18 @@ class Migration_create_users extends MY_Migration{
                 'type' => 'CHAR',
                 'constraint' => 1,
             ],
-            'profession' => [
+            'phone' => [
+                'type' => 'VARCHAR',
+                'constraint' => 18,
+            ],
+            'occupation' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'address' => [
+                'type' => 'TEXT',
+            ],
+            'profile_picture' => [
                 'type' => 'TEXT',
             ],
         ];

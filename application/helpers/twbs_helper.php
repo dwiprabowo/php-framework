@@ -18,7 +18,12 @@ if(!function_exists('twbs_textarea')){
         }else{
             $label = t('common_'.$data['label'])?:$data['label'];
         }
-        $value = set_value($data['name']);
+        if(set_value($data['name'])){
+            $value = set_value($data['name']);
+            $data['value'] = $value;
+        }else{
+            $value = @$data['value'];
+        }
         isset($data['id']) or $id = $name = $data['id'] = $data['name'];
 
         if($horizontal){
@@ -51,7 +56,12 @@ if(!function_exists('twbs_input')){
         }else{
             $label = t('common_'.$data['label'])?:$data['label'];
         }
-        $value = set_value($data['name']);
+        if(set_value($data['name'])){
+            $value = set_value($data['name']);
+            $data['value'] = $value;
+        }else{
+            $value = @$data['value'];
+        }
         isset($data['id']) or $id = $name = $data['id'] = $data['name'];
 
         if($horizontal){

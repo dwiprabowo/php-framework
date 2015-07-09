@@ -7,3 +7,5 @@ $lang['message_successfully_login'] = "Login berhasil.";
 $lang['message_successfully_logout'] = "Logout berhasil.";
 $lang['message_form_input_error'] = "Mohon perbaiki isian form.";
 $lang['message_please_login'] = "Mohon untuk login terlebih dahulu.";
+$lang['message_failed_to_update_user_info'] = "Terjadi kesalahan, tidak bisa memperbaharui Informasi pengguna, mohon periksa kembali isian Anda.";
+$lang['message_succeed_update_user_info'] = "Data Anda telah berhasil diperbaharui.";

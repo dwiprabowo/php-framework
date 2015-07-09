@@ -23,7 +23,10 @@
             <div class="col-sm-9">
                 <div class="row">
                     <div class="col-md-6">
-                        {{ twbs_h_input('fullname')|raw }}
+                        {{ twbs_h_input({
+                            'name': 'fullname',
+                            'value': user.fullname
+                        })|raw }}
                         <div class="form-group{% if form_error('gender') %}
                             {{ ' has-error' }}
                             {% endif %}">
@@ -35,14 +38,14 @@
                                     <input 
                                         type="radio" 
                                         name="gender" 
-                                        {{ set_value('gender') == 'm'?'checked':'' }}
+                                        {{ (user.gender?:set_value('gender')) == 'm'?'checked':'' }}
                                         value="m"> Male
                                 </label>
                                 <label class="radio-inline">
                                     <input 
                                         type="radio" 
                                         name="gender" 
-                                        {{ set_value('gender') == 'f'?'checked':'' }}
+                                        {{ (user.gender?:set_value('gender')) == 'f'?'checked':'' }}
                                         value="f"> Female
                                 </label>
                                 <div>
@@ -54,15 +57,16 @@
                                 </div>
                             </div>
                         </div>
-                        {{ twbs_h_input('birth_date')|raw }}
-                        {{ twbs_h_input('birth_place')|raw }}
-                        {{ twbs_h_input('occupation')|raw }}
+                        {{ twbs_h_input({'name': 'birth_date', 'value': user.birth_date})|raw }}
+                        {{ twbs_h_input({'name': 'birth_place', 'value': user.birth_place})|raw }}
+                        {{ twbs_h_input({'name': 'occupation', 'value': user.occupation})|raw }}
                     </div>
                     <div class="col-md-6">
-                        {{ twbs_h_input('email')|raw }}
-                        {{ twbs_h_input('phone')|raw }}
+                        {{ twbs_h_input({'name': 'email', 'value': user.email})|raw }}
+                        {{ twbs_h_input({'name': 'phone', 'value': user.phone})|raw }}
                         {{ twbs_h_textarea({
                             'name': 'address',
+                            'value': user.address,
                             'rows': 5,
                         })|raw }}
                     </div>

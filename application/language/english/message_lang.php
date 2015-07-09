@@ -7,3 +7,5 @@ $lang['message_successfully_login'] = "Successfully login.";
 $lang['message_successfully_logout'] = "Successfully Logout.";
 $lang['message_form_input_error'] = "Please fix the form input.";
 $lang['message_please_login'] = "Please login first.";
+$lang['message_failed_to_update_user_info'] = "Can't update Your profile, please verify Your input.";
+$lang['message_succeed_update_user_info'] = "Your profile is updated.";
