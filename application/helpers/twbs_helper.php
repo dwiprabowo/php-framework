@@ -14,9 +14,9 @@ if(!function_exists('twbs_textarea')){
         is_array($data) or $data = array('name' => $data);
         $data['class'] = 'form-control';
         if(!isset($data['label'])){
-            $label = $data['label'] = ucwords($data['name']);
+            $label = $data['label'] = t('common_'.$data['name'])?:ucwords($data['name']);
         }else{
-            $label = $data['label'];
+            $label = t('common_'.$data['label'])?:$data['label'];
         }
         $value = set_value($data['name']);
         isset($data['id']) or $id = $name = $data['id'] = $data['name'];
@@ -47,9 +47,9 @@ if(!function_exists('twbs_input')){
         is_array($data) or $data = array('name' => $data);
         $data['class'] = 'form-control';
         if(!isset($data['label'])){
-            $label = $data['label'] = ucwords($data['name']);
+            $label = $data['label'] = t('common_'.$data['name'])?:ucwords($data['name']);
         }else{
-            $label = $data['label'];
+            $label = t('common_'.$data['label'])?:$data['label'];
         }
         $value = set_value($data['name']);
         isset($data['id']) or $id = $name = $data['id'] = $data['name'];

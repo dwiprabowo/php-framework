@@ -5,14 +5,14 @@ class User extends Auth_Controller{
 
     function profile_post(){
         $this->validate->setRules([
-            'fullname ~ Full Name ~ required|alpha_space|autocorrect[name]',
-            'gender ~ Gender ~ required',
-            'birth_date ~ Birth Date ~ required|valid_date',
-            'birth_place ~ Birth Place ~ required',
-            'email ~ Email ~ required|valid_email|autocorrect[email]',
-            'phone ~ Phone ~ required',
-            'occupation ~ Occupation ~ required',
-            'address ~ Address ~ required',
+            'fullname ~ required|alpha_space|autocorrect[name]',
+            'gender ~ required',
+            'birth_date ~ required|valid_date',
+            'birth_place ~ required',
+            'email ~ required|valid_email|autocorrect[email]',
+            'phone ~ required',
+            'occupation ~ required',
+            'address ~ required',
         ]);
         if(!$this->validate->run()){
             notif('message_form_input_error', false);

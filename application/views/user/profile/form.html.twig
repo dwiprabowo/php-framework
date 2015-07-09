@@ -23,15 +23,12 @@
             <div class="col-sm-9">
                 <div class="row">
                     <div class="col-md-6">
-                        {{ twbs_h_input({
-                            'name': 'fullname',
-                            'label': 'Full Name',
-                        })|raw }}
+                        {{ twbs_h_input('fullname')|raw }}
                         <div class="form-group{% if form_error('gender') %}
                             {{ ' has-error' }}
                             {% endif %}">
                             <label class="control-label col-sm-4">
-                                Gender
+                                {{ t('common_gender') }}
                             </label>
                             <div class="col-sm-8">
                                 <label class="radio-inline">
@@ -57,14 +54,8 @@
                                 </div>
                             </div>
                         </div>
-                        {{ twbs_h_input({
-                            'name': 'birth_date',
-                            'label': 'Birth Date',
-                        })|raw }}
-                        {{ twbs_h_input({
-                            'name': 'birth_place',
-                            'label': 'Birth Place',
-                        })|raw }}
+                        {{ twbs_h_input('birth_date')|raw }}
+                        {{ twbs_h_input('birth_place')|raw }}
                         {{ twbs_h_input('occupation')|raw }}
                     </div>
                     <div class="col-md-6">
@@ -82,7 +73,7 @@
     <div class="col-sm-12">
         <input 
             type="submit" 
-            value="Update" 
+            value="{{ t('common_update') }}" 
             class="btn btn-primary btn-block">
     </div>
 </form>

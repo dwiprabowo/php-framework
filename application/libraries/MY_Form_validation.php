@@ -23,7 +23,7 @@ class MY_Form_validation extends CI_Form_validation{
                 list($field, $label, $rule) = $items;
             }elseif(count($items) === 2){
                 list($field, $rule) = $items;
-                $label = ucwords($field);
+                $label = t('common_'.$field)?:ucwords($field);
             }
             $rules = $this->buildAutoCorrect($field, $rule);
             $item = compact('field', 'label', 'rules');
