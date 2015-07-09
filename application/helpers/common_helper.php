@@ -39,8 +39,25 @@ if(!function_exists('notif')){
     }
 }
 
+if(!function_exists('get_domain')){
+    function get_domain($lang){
+        $available_languages = config_item('available_languages');
+        $lang = @$available_languages[$lang];
+        if(!$lang){
+            show_error("$lang language is not defined.");
+        }else{
+            if(@$lang['default']){
+                return "";
+            }else{
+                return $lang['code'];
+            }
+        }
+    }
+}
+
 if(!function_exists('base_domain')){
-    function base_domain($code = false){
+    function base_domain($lang){
+        $code = get_domain($lang);
         return 'http://'.strtolower($code).($code?'.':'').PROJECT_DOMAIN;
     }
 }

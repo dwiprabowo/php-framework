@@ -86,36 +86,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p>
-                            {% if not is_lang('indonesian') %}
-                                <a href="{{ base_domain() }}">
-                            {% endif %}
-                                <div 
-                                    class="flag-wrapper {{ 
-                                        active_if_lang('indonesian')
-                                    }}" 
-                                    title="{{ lang('common_indonesian') }}"
-                                >
-                                    <span class="flag-icon flag-icon-id"></span>
-                                </div>
-                            {% if not is_lang('indonesian') %}
-                                </a>
-                            {% endif %}
-                            {% if not is_lang('english') %}
-                                <a href="{{ base_domain('en-US') }}">
-                            {% endif %}
-                                <div 
-                                    class="flag-wrapper {{ 
-                                        active_if_lang('english')
-                                    }}" 
-                                    title="{{ lang('common_english') }}"
-                                >
-                                    <span class="flag-icon flag-icon-us"></span>
-                                </div>
-                            {% if not is_lang('english') %}
-                                </a>
-                            {% endif %}
-                        </p>
+                        {% include 'template/partial/language.html.twig' %}
                     </div>
                 </div>
                 <p class="text-muted">

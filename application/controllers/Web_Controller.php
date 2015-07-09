@@ -101,7 +101,7 @@ abstract class Web_Controller extends MY_Controller{
             'twbs_textarea',
             'twbs_h_textarea',
             'lang',
-            ['config_item', 'config'],
+            ['config', 'config_item'],
             'active_if_lang',
             'base_domain',
             'd',

@@ -1,0 +1,18 @@
+<p>
+    {% for lang, values in config('available_languages') %}
+        {% if not is_lang(lang) %}
+            <a href="{{ base_domain(lang) }}">
+        {% endif %}
+            <div 
+                class="flag-wrapper {{ 
+                    active_if_lang(lang)
+                }}" 
+                title="{{ lang('common_' ~ lang) }}"
+            >
+                <span class="flag-icon flag-icon-{{ values.icon }}"></span>
+            </div>
+        {% if not is_lang(lang) %}
+            </a>
+        {% endif %}
+    {% endfor %}
+</p>
