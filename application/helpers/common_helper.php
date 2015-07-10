@@ -64,7 +64,7 @@ if(!function_exists('base_domain')){
 
 if(!function_exists('t')){
     function t($key){
-        return lang($key);
+        return lang($key)?:$key;
     }
 }
 

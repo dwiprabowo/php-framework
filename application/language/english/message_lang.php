@@ -11,3 +11,4 @@ $lang['message_failed_to_update_user_info'] = "Can't update Your profile, please
 $lang['message_succeed_update_user_info'] = "Your profile is updated.";
 $lang['message_please_specify_field_name'] = "There is an error code, no field name specified.";
 $lang['message_upload_image_is_ok'] = "No file uploaded, but there is no problem.";
+$lang['message_db_not_ready'] = "Database not ready, run the migration first ~ <code>php index.php migrate</code>";

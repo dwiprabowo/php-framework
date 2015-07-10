@@ -11,3 +11,4 @@ $lang['message_failed_to_update_user_info'] = "Terjadi kesalahan, tidak bisa mem
 $lang['message_succeed_update_user_info'] = "Data Anda telah berhasil diperbaharui.";
 $lang['message_please_specify_field_name'] = "Ada kesalahan kode, kata kunci tidak tertera.";
 $lang['message_upload_image_is_ok'] = "Tidak ada file yang diunggah, tapi itu bukan masalah.";
+$lang['message_db_not_ready'] = "Database belum siap, jalankan migration terlebih dahulu ~ <code>php index.php migrate</code>";

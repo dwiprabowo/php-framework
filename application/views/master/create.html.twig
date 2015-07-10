@@ -1,0 +1,41 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block subtitle %} | {{ t('common_master_create') }} {% endblock %}
+
+{% block style %}
+    <style>
+        body{
+            margin-top: 48px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ t('common_master_create') }}
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" class="form-horizontal" rule="form">
+                            {{ twbs_h_input('email')|raw }}
+                            {{ twbs_h_input({
+                                'name': 'password',
+                                'type': 'password',
+                            })|raw }}
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-primary btn-block">
+                                        {{ t('common_create') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

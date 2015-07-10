@@ -10,7 +10,12 @@
         <link rel="icon" href="{{ 
             twbs('docs/favicon.ico')
         }}">
-        <title>{% block title %}Starter Template for Bootstrap{% endblock %}</title>
+        <title>
+            {% block title %}
+                {{ constant('PROJECT_NAME') }}
+                {% block subtitle %}{% endblock %}
+            {% endblock %}
+        </title>
         <link href="{{ 
             twbs('dist/css/bootstrap.min.css')
         }}" rel="stylesheet">
