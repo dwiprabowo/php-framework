@@ -8,10 +8,12 @@ $config['available_languages'] = [
     'indonesian' => [
         'default' => true,
         'code' => 'id-id',
+        'dir-code' => 'id',
         'icon' => 'id',
     ],
     'english' => [
         'code' => 'en-us',
+        'dir-code' => 'us',
         'icon' => 'us',
     ],
 ];

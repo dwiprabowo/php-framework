@@ -1,6 +1,39 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('check_other_projects')){
+    function check_other_projects(){
+        $used_lang = config_item('language');
+        $other_langs = config_item('available_languages');
+        if(@$other_langs[$used_lang]){
+            unset($other_langs[$used_lang]);
+        }
+        return array_map(
+            function($v){ return $v."/"; }
+            , array_column($other_langs, 'dir-code')
+        );
+    }
+}
+
+if(!function_exists('copy_to_other_projects')){
+    function copy_to_other_projects($filepath, $filename, $relative_dir){
+        log_message('error', 'filepath: '.$filepath);
+        log_message('error', 'filename: '.$filename);
+        $dirs = array_map(function($v){
+            return PROJECT_BASEPATH.$v;
+        }, check_other_projects());
+        foreach ($dirs as $path) {
+            $from = $filepath.$filename;
+            $to = $path.$relative_dir.$filename;
+            if(!copy($from, $to)){
+                log_message('error', "Copy file to other project failed!");
+            }else{
+                log_message('debug', "File copied to other project ...");
+            }
+        }
+    }
+}
+
 if(!function_exists('upload_image')){
     function upload_image($file_name = false, $is_ok = true){
         if(!$file_name){
@@ -34,6 +67,11 @@ if(!function_exists('upload_image')){
                 'status' => true,
                 'data' => get_instance()->upload->data(),
             ];
+            copy_to_other_projects(
+                $result['data']['file_path']
+                , $result['data']['file_name']
+                , str_replace(FCPATH, '', $config['upload_path'])
+            );
         }
         return $result;
     }
