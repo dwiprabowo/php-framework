@@ -3,7 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Database_model extends CI_Model{
 
-    function isReady(){
+    function __construct(){
+        parent::__construct();
+        $this->load->model('user_model');
+    }
+
+    function ready(){
         $query = "  SELECT 
                         table_name AS `table`
                     FROM
@@ -19,5 +24,13 @@ class Database_model extends CI_Model{
             return false;
         }
         return true;
+    }
+
+    function noUser(){
+        $user = $this->user_model->limit(1)->get_all();
+        if(!count($user)){
+            return true;
+        }
+        return false;
     }
 }

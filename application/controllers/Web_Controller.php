@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-abstract class Web_Controller extends MY_Controller{
+abstract class Web_Controller extends Master_Controller{
 
     const TWIG_EXT = ".html.twig";
     const TWIG_DIR = APPPATH."views".DS;
@@ -13,6 +13,11 @@ abstract class Web_Controller extends MY_Controller{
     private $var = [];
     private $request;
     private $idiom = "indonesian";
+
+    function __construct(){
+        parent::__construct();
+        $this->_init();
+    }
 
     function _request(){
         $this->request = new stdClass();
