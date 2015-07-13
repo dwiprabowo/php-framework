@@ -19,13 +19,21 @@ class Login_model extends CI_Model{
     function remember(){
         $user_id = get_cookie(self::KEYWORD);
         if($user_id){
+            $this->encryption->initialize([
+                'cipher' => 'aes-256',
+                'mode' => 'ctr',
+            ]);
             $decrypted_id = $this->encryption->decrypt($user_id);
-            $this->session->set_userdata(
-                self::KEYWORD
-                , $decrypted_id
-            );
-            redirect();
+            if($decrypted_id){
+                $this->session->set_userdata(
+                    self::KEYWORD
+                    , $decrypted_id
+                );
+                redirect();
+            }
         }
+
+        delete_cookie(self::KEYWORD);
     }
 
     function signIn($email, $password, $remember){
