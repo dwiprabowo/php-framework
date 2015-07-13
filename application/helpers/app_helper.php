@@ -1,6 +1,20 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('change_every')){
+    function change_every(&$items, $funcname){
+        array_walk_recursive($items, $funcname);
+    }
+}
+
+if(!function_exists('hash_the_password')){
+    function hash_the_password(&$item, $key){
+        if($key === 'password'){
+            $item = md5($item);
+        }
+    }
+}
+
 if(!function_exists('check_other_projects')){
     function check_other_projects(){
         $used_lang = config_item('language');

@@ -15,3 +15,6 @@ $lang['message_db_not_ready'] = "Database belum siap, jalankan migration terlebi
 $lang['message_couldnt_find_user_with_email'] = "Tidak dapat menemukan data user menggunakan email tersebut.";
 $lang['message_reset_link_sent_check_email'] = "Cek email Anda, Kami telah mengirimkan link untuk mengganti password.";
 $lang['message_success_change_password'] = "Password berhasil diganti.";
+$lang['message_invalid_link'] = "Tautan yang ingin Anda tuju tidak valid.";
+$lang['message_something_wrong'] = "Terjadi kesalahan, mohon coba lagi.";
+$lang['message_password_not_match'] = "Password yang Anda masukan salah.";

@@ -15,3 +15,6 @@ $lang['message_db_not_ready'] = "Database not ready, run the migration first ~ <
 $lang['message_couldnt_find_user_with_email'] = "Couldn't find data using the email above.";
 $lang['message_reset_link_sent_check_email'] = "Check Your email, We've sent an the change password link.";
 $lang['message_success_change_password'] = "Password changed successfully.";
+$lang['message_invalid_link'] = "The link is not valid.";
+$lang['message_something_wrong'] = "Something wrong, please try again.";
+$lang['message_password_not_match'] = "You've entered the wrong password.";

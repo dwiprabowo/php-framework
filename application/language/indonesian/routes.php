@@ -7,3 +7,4 @@ $route['masuk'] = 'login';
 $route['keluar'] = 'logout';
 $route['profil/pengguna'] = 'user/profile';
 $route['password/minta_tautan'] = 'password/request_link';
+$route['ganti/password'] = 'password/change';

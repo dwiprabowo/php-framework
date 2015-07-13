@@ -3,6 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_Model extends MY_Model{
 
+    protected $before_create = ['password_hash'];
+    protected $before_update = ['password_hash'];
+
+    function password_hash($data){
+        if($data){
+            change_every($data, 'hash_the_password');
+        }
+        return $data;
+    }
+
     function getProfilePicture($id){
         $result = $this->get($id);
         if($result){
@@ -12,12 +22,5 @@ class User_Model extends MY_Model{
             }
         }
         return 'assets/img/profile-picture-default.png';
-    }
-
-    function login($email, $password){
-        return $this->get_by([
-            'email' => $email,
-            'password' => md5($password),
-        ]);
     }
 }
