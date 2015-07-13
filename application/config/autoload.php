@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 */
 
 $autoload['libraries'] = [
-    'database', 'session'
+    'database', 'session', 'email',
 ];
 
 

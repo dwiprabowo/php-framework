@@ -12,6 +12,7 @@ abstract class MY_Controller extends CI_Controller{
 
     function __construct(){
         parent::__construct();
+        $this->load->library('email');
         foreach ($this->_models() as $key => $value) {
             $this->load->model($value."_model");
         }

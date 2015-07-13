@@ -55,6 +55,30 @@
                         'name': 'password',
                         'type': 'password',
                     })|raw }}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="checkbox text-right">
+                                <label>
+                                    <input 
+                                        name="remember" 
+                                        type="checkbox"
+                                        {% if initial %}
+                                            checked
+                                        {% else %}
+                                            {% if set_value('remember') %}
+                                                checked
+                                            {% endif %}
+                                        {% endif %}
+                                        > {{ t('common_remember_me') }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="checkbox text-left">
+                                <a href="#">{{ t('common_forgot_password') }}</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <button 

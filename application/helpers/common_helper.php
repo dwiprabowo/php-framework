@@ -1,6 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('send_mail')){
+    function send_mail($to, $subject, $body){
+        get_instance()->email->from('admin@fireboil.com', 'FireBoil');
+        get_instance()->email->to($to);
+        get_instance()->email->subject($subject);
+        get_instance()->email->message($body);
+        get_instance()->email->send();
+    }
+}
+
 if(!function_exists('lang_url_prefix')){
     function lang_url_prefix($key){
         return "_".$key;

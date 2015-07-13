@@ -10,7 +10,10 @@ class Login extends App_Controller{
         }
     }
 
-    public function index(){}
+    public function index(){
+        $this->login_model->remember();
+        $this->_var('initial', true);
+    }
 
     public function index_post(){
         $this->validate->setRules([
@@ -24,7 +27,7 @@ class Login extends App_Controller{
 
     function login(){
         extract($this->input->post());
-        $this->login_model->signIn($email, $password)
+        $this->login_model->signIn($email, $password, $remember)
         or notif('message_invalid_user_login_info', false);
     }
 

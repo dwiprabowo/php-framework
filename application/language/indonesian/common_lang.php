@@ -22,3 +22,5 @@ $lang['common_occupation'] = "Pekerjaan";
 $lang['common_phone'] = "Nomor Telepon";
 $lang['common_address'] = "Alamat";
 $lang['common_update'] = "Perbaharui";
+$lang['common_forgot_password'] = "Lupa password?";
+$lang['common_remember_me'] = "Ingat saya";

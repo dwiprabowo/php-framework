@@ -16,11 +16,30 @@ class Login_model extends CI_Model{
         );
     }
 
-    function signIn($email, $password){
+    function remember(){
+        $this->encryption->initialize(
+            array(
+                    'cipher' => 'aes-256',
+                    'mode' => 'ctr',
+                    'key' => 'login-key'
+            )
+        );
+        $user_id = get_cookie(self::KEYWORD);
+        if($user_id){
+            $decrypted_id = $this->encryption->decrypt($user_id);
+            $this->session->set_userdata(
+                self::KEYWORD
+                , $decrypted_id
+            );
+            redirect();
+        }
+    }
+
+    function signIn($email, $password, $remember){
         $result = $this->user_model->get_by([
             'email' => $email,
             'password' => md5($password),
-        ]) and $this->setData($result);
+        ]) and $this->setData($result, $remember);
         if(!$result)return false;
         $this->notif->addFlash(
             t('message_successfully_login')
@@ -47,7 +66,22 @@ class Login_model extends CI_Model{
         return $this->ready();
     }
 
-    function setData($user){
+    function setData($user, $remember){
+        if($user->id and $remember){
+            $this->encryption->initialize(
+                array(
+                        'cipher' => 'aes-256',
+                        'mode' => 'ctr',
+                        'key' => 'login-key'
+                )
+            );
+            $encrypted_id = $this->encryption->encrypt($user->id);
+            set_cookie(
+                self::KEYWORD
+                , $encrypted_id
+                , strtotime("+30 days") - time()
+            );
+        }
         $this->session->set_userdata(
             self::KEYWORD
             , $user->id
@@ -55,6 +89,7 @@ class Login_model extends CI_Model{
     }
 
     function deleteData(){
+        delete_cookie(self::KEYWORD);
         $this->session->unset_userdata(self::KEYWORD);
     }
 

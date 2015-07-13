@@ -26,6 +26,9 @@ abstract class Web_Controller extends WebMethod_Controller{
         $this->load->library('form_validation', null, 'validate');
         $this->load->library('notify', null, 'notif');
         $this->load->library('autoCorrect', null, 'ac');
+        $this->load->library('encryption');
+
+        $this->load->helper('cookie');
 
         $this->_initTwig();
         $this->_initLang();
