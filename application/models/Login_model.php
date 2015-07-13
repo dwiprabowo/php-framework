@@ -17,13 +17,6 @@ class Login_model extends CI_Model{
     }
 
     function remember(){
-        $this->encryption->initialize(
-            array(
-                    'cipher' => 'aes-256',
-                    'mode' => 'ctr',
-                    'key' => 'login-key'
-            )
-        );
         $user_id = get_cookie(self::KEYWORD);
         if($user_id){
             $decrypted_id = $this->encryption->decrypt($user_id);
@@ -68,18 +61,16 @@ class Login_model extends CI_Model{
 
     function setData($user, $remember){
         if($user->id and $remember){
-            $this->encryption->initialize(
-                array(
-                        'cipher' => 'aes-256',
-                        'mode' => 'ctr',
-                        'key' => 'login-key'
-                )
-            );
+            $this->encryption->initialize([
+                'cipher' => 'aes-256',
+                'mode' => 'ctr',
+            ]);
             $encrypted_id = $this->encryption->encrypt($user->id);
             set_cookie(
                 self::KEYWORD
                 , $encrypted_id
                 , strtotime("+30 days") - time()
+                , config_item('cookie_domain')
             );
         }
         $this->session->set_userdata(
