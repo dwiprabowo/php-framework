@@ -3,6 +3,13 @@ defined('BASEPATH') or die('No direct access script allowed');
 
 class Password extends App_Controller{
 
+    function _initUser(){
+        $this->_var(
+            'nav_profile_picture'
+            , $this->login_model->getProfilePicture()
+        );
+    }
+
     private function _redirectIfLogin(){
         if($this->login_model->ready()){
             notif('message_invalid_link');
@@ -11,6 +18,7 @@ class Password extends App_Controller{
     }
 
     function change(){
+        $this->_initUser();
         $user = $this->user_model->get($this->login_model->getId());
         if(!$user){
             notif('message_invalid_link');
@@ -19,6 +27,7 @@ class Password extends App_Controller{
     }
 
     function change_post(){
+        $this->_initUser();
         $this->validate->setRules([
             'new_password ~ required|min_length[8]',
         ]);

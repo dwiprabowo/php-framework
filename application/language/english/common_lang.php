@@ -32,4 +32,4 @@ $lang['common_request_new_password'] = "Password change link";
 $lang['common_change_password'] = "Change password";
 $lang['common_remember_me'] = "Remember me";
 $lang['common_new_signup'] = "New? sign up";
-$lang['common_request_new_password_explanation'] = "We will send the link to the Email entered above."
+$lang['common_request_new_password_explanation'] = "We will send the link to the Email entered above.";

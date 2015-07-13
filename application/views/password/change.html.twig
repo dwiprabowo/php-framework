@@ -4,9 +4,6 @@
 
 {% block style %}
     <style>
-        body{
-            margin-top: 32px;
-        }
         .form-signin {
             max-width: 360px;
             padding: 15px;
@@ -34,21 +31,12 @@
         .form-signin .panel-body input{
             text-align: center;
         }
-        #back-home{
-            font-size: 36px;
-        }
     </style>
 {% endblock %}
 
 {% block content %}
+    {% include 'template/partial/navbar.html.twig' %}
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <a href="{{ base_url() }}">
-                    <i id="back-home" class="fa fa-home"></i>
-                </a>
-            </div>
-        </div>
         <form class="form-signin" method="post">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
