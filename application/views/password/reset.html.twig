@@ -1,0 +1,84 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block style %}
+    <style>
+        body{
+            margin-top: 32px;
+        }
+        .form-signin {
+            max-width: 360px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin .panel-body input{
+            text-align: center;
+        }
+        #back-home{
+            font-size: 36px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a href="{{ base_url() }}">
+                    <i id="back-home" class="fa fa-home"></i>
+                </a>
+            </div>
+        </div>
+        <form class="form-signin" method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4 class="text-info">
+                        <i class="fa fa-recycle"></i>
+                        {{ t('common_reset_password') }}
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    {{ twbs_input({
+                        'name': 'password',
+                        'type': 'password',
+                    })|raw }}
+                </div>
+                <div class="panel-footer">
+                    <button 
+                        class="btn btn-lg btn-info btn-block" 
+                        type="submit"
+                    >
+                        <i class="fa fa-repeat"></i>
+                        {{ t('common_change') }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div> <!-- /container -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        autoFocus();
+    </script>
+{% endblock %}

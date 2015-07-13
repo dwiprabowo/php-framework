@@ -3,9 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 if(!function_exists('send_mail')){
     function send_mail($to, $subject, $body){
+        get_instance()->email->initialize(config_item('email')['smtp']);
         get_instance()->email->from('admin@fireboil.com', 'FireBoil');
         get_instance()->email->to($to);
         get_instance()->email->subject($subject);
+        get_instance()->email->set_mailtype("html");
         get_instance()->email->message($body);
         get_instance()->email->send();
     }

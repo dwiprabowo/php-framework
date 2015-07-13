@@ -12,3 +12,6 @@ $lang['message_succeed_update_user_info'] = "Data Anda telah berhasil diperbahar
 $lang['message_please_specify_field_name'] = "Ada kesalahan kode, kata kunci tidak tertera.";
 $lang['message_upload_image_is_ok'] = "Tidak ada file yang diunggah, tapi itu bukan masalah.";
 $lang['message_db_not_ready'] = "Database belum siap, jalankan migration terlebih dahulu ~ <code>php index.php migrate</code>";
+$lang['message_couldnt_find_user_with_email'] = "Tidak dapat menemukan data user menggunakan email tersebut.";
+$lang['message_reset_link_sent_check_email'] = "Cek email Anda, Kami telah mengirimkan link untuk mengganti password.";
+$lang['message_success_change_password'] = "Password berhasil diganti.";

@@ -75,7 +75,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="checkbox text-center">
-                                <a href="#">{{ t('common_forgot_password') }}</a>
+                                <a href="{{ site_url('password/request_link') }}">
+                                    {{ t('common_forgot_password') }}?
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +88,7 @@
                         type="submit"
                     >
                         <i class="fa fa-sign-in"></i>
-                        {{ lang('common_signin') }}
+                        {{ t('common_signin') }}
                     </button>
                     <p>
                         <div class="checkbox text-center">
