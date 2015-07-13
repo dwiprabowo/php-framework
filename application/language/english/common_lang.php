@@ -24,3 +24,4 @@ $lang['common_address'] = "Address";
 $lang['common_update'] = "Update";
 $lang['common_forgot_password'] = "Forgot password?";
 $lang['common_remember_me'] = "Remember me";
+$lang['common_new_signup'] = "New? sign up";

@@ -24,3 +24,4 @@ $lang['common_address'] = "Alamat";
 $lang['common_update'] = "Perbaharui";
 $lang['common_forgot_password'] = "Lupa password?";
 $lang['common_remember_me'] = "Ingat saya";
+$lang['common_new_signup'] = "Baru? daftar";
