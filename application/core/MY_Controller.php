@@ -1,11 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require(APPPATH."controllers/REST_Controller.php");
-require(APPPATH."controllers/CLI_Controller.php");
-require(APPPATH."controllers/Master_Controller.php");
-require(APPPATH."controllers/Web_Controller.php");
-require(APPPATH."controllers/Auth_Controller.php");
+require(APPPATH."controllers/core/REST_Controller.php");
+require(APPPATH."controllers/core/CLI_Controller.php");
+require(APPPATH."controllers/core/WebMethod_Controller.php");
+require(APPPATH."controllers/core/Web_Controller.php");
+require(APPPATH."controllers/core/App_Controller.php");
+require(APPPATH."controllers/core/Auth_Controller.php");
 
 abstract class MY_Controller extends CI_Controller{
 

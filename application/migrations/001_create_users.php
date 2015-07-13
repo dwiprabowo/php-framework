@@ -21,6 +21,7 @@ class Migration_create_users extends MY_Migration{
             ],
             'birth_date' => [
                 'type' => 'DATE',
+                'default' => null,
             ],
             'birth_place' => [
                 'type' => 'VARCHAR',

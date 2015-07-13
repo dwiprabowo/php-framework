@@ -1,17 +1,26 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Start extends Web_Controller{
+class Start extends App_Controller{
 
     function index(){
-        if($this->database_model->ready()){
-            redirect('master/create');
-        }else{
-            show_error(t('message_db_not_ready'));
+        show_error(t('message_db_not_ready'));
+    }
+
+    function user_post(){
+        $data = $this->input->post(null);
+        $this->validate->setRules([
+            'email ~ required|valid_email|autocorrect[email]',
+            'password ~ required|min_length[8]',
+        ]);
+        if($this->validate->run()){
+            $data['password'] = md5($data['password']);
+            $this->user_model->insert($data);
+            redirect();
         }
     }
 
     function _models(){
-        return ['database'];
+        return ['user'];
     }
 }

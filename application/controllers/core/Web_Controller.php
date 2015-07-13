@@ -1,11 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-abstract class Web_Controller extends Master_Controller{
+abstract class Web_Controller extends WebMethod_Controller{
 
-    const TWIG_EXT = ".html.twig";
-    const TWIG_DIR = APPPATH."views".DS;
-    const HTTP_METHODS = [
+    private $twig_ext;
+    private $twig_dir;
+    private $http_methods = [
         'get', 'delete', 'post', 'put', 'options', 'patch', 'head'
     ];
 
@@ -19,47 +19,14 @@ abstract class Web_Controller extends Master_Controller{
         $this->_init();
     }
 
-    function _request(){
-        $this->request = new stdClass();
-        $this->request->method = $this->_detect_method();
-    }
+    private function _init(){
+        $this->twig_ext = ".html.twig";
+        $this->twig_dir = APPPATH."views".DS;
 
-    function _detect_method(){
-        $method = strtolower($this->input->server('REQUEST_METHOD'));
-        if(in_array($method, self::HTTP_METHODS)){
-            return $method;
-        }
-        return 'get';
-    }
-
-    function _remap($object, $args){
-        $requested_method = $object.'_'.$this->request->method;
-
-        $call_method = false;
-        if(method_exists($this, $requested_method)){
-            $call_method = $requested_method;
-        }elseif(method_exists($this, $object)){
-            $call_method = $object;
-        }
-
-        if($call_method){
-            try{
-                call_user_func_array(
-                    [$this, $call_method]
-                    , $args
-                );
-            }catch(Exception $e){
-                error_message($e->getMessage());
-            }
-        }
-    }
-
-    function _init(){
         $this->load->library('form_validation', null, 'validate');
         $this->load->library('notify', null, 'notif');
         $this->load->library('autoCorrect', null, 'ac');
 
-        $this->_request();
         $this->_initTwig();
         $this->_initLang();
         $this->validate->set_error_delimiters('', '');
@@ -69,7 +36,7 @@ abstract class Web_Controller extends Master_Controller{
         }
     }
 
-    function _initLang(){
+    private function _initLang(){
         $lang = config_item('language');
         if($lang){
             $this->idiom = $lang;
@@ -77,13 +44,13 @@ abstract class Web_Controller extends Master_Controller{
         $this->lang->load(['common', 'message'], $this->idiom);
     }
 
-    function _initTwig(){
-        $twigLoader = new Twig_Loader_Filesystem(self::TWIG_DIR);
+    private function _initTwig(){
+        $twigLoader = new Twig_Loader_Filesystem($this->twig_dir);
         $this->twig = new Twig_Environment($twigLoader);
         $this->_generateTwigFilter();
     }
 
-    function _generateTwigFilter(){
+    private function _generateTwigFilter(){
         foreach ($this->_twigFilter() as $k => $v) {
             if(is_array($v)){
                 $filter = new Twig_SimpleFunction($v[0], $v[1]);
@@ -94,7 +61,7 @@ abstract class Web_Controller extends Master_Controller{
         }
     }
 
-    function _twigFilter(){
+    private function _twigFilter(){
         return [
             'base_url',
             'site_url',
@@ -117,8 +84,8 @@ abstract class Web_Controller extends Master_Controller{
     }
 
     function _render(){
-        $view = $this->_viewPath().self::TWIG_EXT;
-        if(file_exists(self::TWIG_DIR.$view)){
+        $view = $this->_viewPath().$this->twig_ext;
+        if(file_exists($this->twig_dir.$view)){
             $template = $this->twig->loadTemplate($view);
             echo $template->render($this->_var());
         }else{
@@ -133,7 +100,7 @@ abstract class Web_Controller extends Master_Controller{
         $this->var[$key] = $value;
     }
 
-    function _viewPath(){
+    private function _viewPath(){
         return $this->router->fetch_class()
             .DS
             .$this->router->fetch_method();

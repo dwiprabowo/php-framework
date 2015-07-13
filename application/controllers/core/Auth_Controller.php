@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct access script allowed');
 
-abstract class Auth_Controller extends Web_Controller{
+abstract class Auth_Controller extends App_Controller{
 
     function __construct(){
         parent::__construct();

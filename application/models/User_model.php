@@ -11,7 +11,7 @@ class User_Model extends MY_Model{
                 return $profile_picture;
             }
         }
-        return base_url('assets/img/profile-picture-default.png');
+        return 'assets/img/profile-picture-default.png';
     }
 
     function login($email, $password){
