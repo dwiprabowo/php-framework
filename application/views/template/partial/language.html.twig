@@ -1,7 +1,9 @@
 <p>
     {% for lang, values in config('available_languages') %}
         {% if not is_lang(lang) %}
-            <a href="{{ base_domain(lang) }}">
+            <a href="{{ 
+                base_domain(lang) ~ constant('DS') ~ current_uri(lang) 
+            }}">
         {% endif %}
             <div 
                 class="flag-wrapper {{ 

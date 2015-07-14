@@ -13,6 +13,7 @@ abstract class Web_Controller extends WebMethod_Controller{
     private $var = [];
     private $request;
     private $idiom = "indonesian";
+    private $current_uri = [];
 
     function __construct(){
         parent::__construct();
@@ -33,10 +34,63 @@ abstract class Web_Controller extends WebMethod_Controller{
         $this->_initTwig();
         $this->_initLang();
         $this->validate->set_error_delimiters('', '');
+
+        $this->_tAllURI();
         
         if(defined('ENABLE_PROFILER') AND ENABLE_PROFILER){
             $this->output->enable_profiler(true);
         }
+    }
+
+    private function _tAllURI(){
+        $current_uri = $_SERVER['REQUEST_URI'];
+        $uri_string = $this->uri->uri_string();
+        $languages = array_keys(config_item('available_languages'));
+        $current_lang = config_item('language');
+
+        $this->current_uri = [];
+
+        $route = [];
+        $route_path = APPPATH.'language/'.$current_lang.DS.'routes'.EXT;
+        try{
+            if(!@include($route_path)){
+                throw new Exception("File not found: ".$route_path);
+            }else{
+                require $route_path;
+            }
+        }catch(Exception $e){
+            log_message(
+                'debug'
+                , $e->getMessage().' ~ No problem! default routes should be used ...'
+            );
+        }
+        $this->current_uri[$current_lang] = $uri_string;
+        $real_uri = @$route[$uri_string];
+
+        unset($languages[$current_lang]);
+
+        foreach ($languages as $lang) {
+            $route = [];
+            $route_path = APPPATH.'language/'.$lang.DS.'routes'.EXT;
+            try{
+                if(!@include($route_path)){
+                    throw new Exception("File not found: ".$route_path);
+                }else{
+                    require $route_path;
+                }
+            }catch(Exception $e){
+                log_message(
+                    'debug'
+                    , $e->getMessage().' ~ No problem! default routes should be used ...'
+                );
+            }
+            $found_uri = array_search($real_uri, $route);
+            $this->current_uri[$lang] = $found_uri;
+        }
+    }
+
+    function _getCurrentURI(){
+        return $this->current_uri;
     }
 
     private function _initLang(){
@@ -83,6 +137,7 @@ abstract class Web_Controller extends WebMethod_Controller{
             'is_lang',
             't',
             'url',
+            'current_uri',
         ];
     }
 

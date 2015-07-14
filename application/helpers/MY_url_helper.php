@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('current_uri')){
+    function current_uri($lang){
+        return get_instance()->_getCurrentURI()[$lang];
+    }
+}
+
 if(!function_exists('t_uri')){
     function t_uri($uri = ''){
         if(is_array($uri)){

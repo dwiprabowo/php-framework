@@ -55,10 +55,10 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route_path = APPPATH.'language/'.config_item('language').DS.'routes'.EXT;
 try{
-    if(!@include_once($route_path)){
+    if(!@include($route_path)){
         throw new Exception("File not found: ".$route_path);
     }else{
-        require_once $route_path;
+        require $route_path;
     }
 }catch(Exception $e){
     log_message(
