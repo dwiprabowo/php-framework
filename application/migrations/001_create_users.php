@@ -56,15 +56,15 @@ class Migration_create_users extends MY_Migration{
                 'keys' => true,
             ],
             'created_date' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'default' => null,
             ],
             'updated_date' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'default' => null,
             ],
             'deleted_date' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'default' => null,
             ],
         ];
