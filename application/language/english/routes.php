@@ -9,3 +9,4 @@ $route['dashboard'] = 'dashboard';
 $route['user/profile'] = 'user/profile';
 $route['password/request_link'] = 'password/request_link';
 $route['password/change'] = 'password/change';
+$route['pengguna/tambah_baru'] = 'user/add_new';
