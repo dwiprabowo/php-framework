@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Start extends App_Controller{
 
+    function __construct(){
+        parent::__construct();
+        $this->login_model->deleteData();
+    }
+
     function index(){
         show_error(t('message_db_not_ready'));
     }
@@ -22,6 +27,6 @@ class Start extends App_Controller{
     }
 
     function _models(){
-        return ['user'];
+        return ['user', 'login'];
     }
 }
