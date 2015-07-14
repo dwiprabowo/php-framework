@@ -20,6 +20,7 @@
                     </div>
                     <div class="panel-body">
                         <form method="post" class="form-horizontal" rule="form">
+                            <input type="hidden" value="master" name="role">
                             {{ twbs_h_input('email')|raw }}
                             {{ twbs_h_input({
                                 'name': 'password',

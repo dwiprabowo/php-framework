@@ -2,6 +2,17 @@
 
 {% block title %}Dashboard{% endblock %}
 
+{% block style %}
+    <style>
+        .dashboard-items{
+            display: inline-block;
+            margin: 10px 30px;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     {% include 'template/partial/navbar.html.twig' %}
+
+    {% include 'dashboard/content.html.twig' %}
 {% endblock %}

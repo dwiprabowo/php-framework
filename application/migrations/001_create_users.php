@@ -45,6 +45,11 @@ class Migration_create_users extends MY_Migration{
             'profile_picture' => [
                 'type' => 'TEXT',
             ],
+            'role' => [
+                'type' => 'VARCHAR',
+                'constraint' => 10,
+                'keys' => true,
+            ],
         ];
     }
 

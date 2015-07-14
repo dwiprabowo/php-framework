@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h2>Dashboard | {{ t('common_users') }}</h2>
+                <hr>
+                <h1 class="dashboard-items">
+                    <span class="text-primary">
+                        {{ 15 }} 
+                    </span>
+                    <small class="text-primary">
+                        <i class="fa fa-users"></i>
+                    </small>
+                </h1>
+                <h1 class="text-primary dashboard-items">
+                    <span class="text-danger">
+                        {{ 1 }} 
+                    </span>
+                    <small class="text-danger">
+                        <i class="fa fa-user-secret"></i>
+                    </small>
+                </h1>
+                <h1 class="text-primary dashboard-items">
+                    <span class="text-success">
+                        {{ 3 }} 
+                    </span>
+                    <small class="text-success">
+                        <i class="fa fa-user-md"></i>
+                    </small>
+                </h1>
+                <h1 class="text-primary dashboard-items">
+                    <span class="text-default">
+                        {{ 11 }} 
+                    </span>
+                    <small class="text-default">
+                        <i class="fa fa-user"></i>
+                    </small>
+                </h1>
+            </div>
+        </div><!--/.col-xs-12.col-sm-9-->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    {{ t('common_users') }}
+                </a>
+                <a href="#" class="list-group-item">Another Link</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+</div>
