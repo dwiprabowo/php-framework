@@ -50,6 +50,23 @@ class Migration_create_users extends MY_Migration{
                 'constraint' => 10,
                 'keys' => true,
             ],
+            'active' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'keys' => true,
+            ],
+            'created_date' => [
+                'type' => 'DATE',
+                'default' => null,
+            ],
+            'updated_date' => [
+                'type' => 'DATE',
+                'default' => null,
+            ],
+            'deleted_date' => [
+                'type' => 'DATE',
+                'default' => null,
+            ],
         ];
     }
 
