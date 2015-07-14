@@ -19,3 +19,4 @@ $lang['message_invalid_link'] = "Tautan yang ingin Anda tuju tidak valid.";
 $lang['message_something_wrong'] = "Terjadi kesalahan, mohon coba lagi.";
 $lang['message_password_not_match'] = "Password yang Anda masukan salah.";
 $lang['message_new_user_created'] = "Pengguna baru telah dibuat.";
+$lang['message_user_deleted'] = "Pengguna telah dihapus.";

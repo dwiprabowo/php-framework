@@ -29,18 +29,15 @@
                 </ol>
             </div>
             <div class="col-xs-12 col-sm-9">
-                <p class="pull-right visible-xs">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-                </p>
                 <div class="jumbotron">
                     <div>
                         <table class="table table-striped">
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th class="text-center">Active</th>
-                                <th class="text-center">Action</th>
+                                <th>{{ t('common_fullname') }}</th>
+                                <th>{{ t('common_email') }}</th>
+                                <th class="text-center">{{ t('common_status') }}</th>
+                                <th class="text-center">{{ t('common_action') }}</th>
                             </tr>
                             {% set number = 1 %}
                             {% for user in users %}

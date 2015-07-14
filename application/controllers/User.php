@@ -3,9 +3,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends Auth_Controller{
 
+    const ACTION_INACTIVATE = 0;
+    const ACTION_ACTIVATE = 1;
+    const ACTION_DELETE = 2;
+
     function lists(){
         $users = $this->user_model->get_all();
         $this->_var('users', $users);
+    }
+
+    function lists_post(){
+        extract($this->input->post());
+        $user = $this->user_model->get($id);
+        if($user){
+            $this->{'_action'.ucfirst($action)}($user);
+        }else{
+            log_message('error', 'User not found!');
+        }
+    }
+
+    private function _actionDelete($user){
+        $deleted = $this->user_model->delete($user->id);
+        if($deleted){
+            notif(['success', 'message_user_deleted']);
+            redirect('user/lists');
+        }else{
+            notif('message_something_wrong');
+        }
+        $this->lists();
     }
 
     function add_new_post(){

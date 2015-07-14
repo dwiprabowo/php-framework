@@ -40,3 +40,6 @@ $lang['common_role'] = "Role";
 $lang['common_inactivate'] = "Inactivate";
 $lang['common_activate'] = "Activate";
 $lang['common_delete'] = "Delete";
+$lang['common_are_you_sure'] = "Are You sure?";
+$lang['common_status'] = "Status";
+$lang['common_action'] = "Action";

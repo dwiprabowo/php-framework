@@ -1,17 +1,25 @@
-<form>
+<form method="post">
+    <input type="hidden" name="id" value="{{ user.id }}">
     {% if user.active %}
         <button 
             class="fa fa-pause text-muted" 
             title="{{ t('common_inactivate') }}"
+            name="action" 
+            value="inactivate" 
         ></button>
     {% else %}
         <button 
             class="fa fa-play text-success" 
             title="{{ t('common_activate') }}"
+            name="action" 
+            value="activate" 
         ></button>
     {% endif %}
     <button 
         class="fa fa-stop text-danger" 
         title="{{ t('common_delete') }}"
+        name="action" 
+        value="delete" 
+        onclick="return areYouSure();" 
     ></button>
 </form>

@@ -40,3 +40,6 @@ $lang['common_role'] = "Jabatan";
 $lang['common_inactivate'] = "Menonaktifkan";
 $lang['common_activate'] = "Aktifasi";
 $lang['common_delete'] = "Hapus";
+$lang['common_are_you_sure'] = "Apakah Anda yakin?";
+$lang['common_status'] = "Status";
+$lang['common_action'] = "Aksi";

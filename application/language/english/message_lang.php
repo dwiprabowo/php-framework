@@ -19,3 +19,4 @@ $lang['message_invalid_link'] = "The link is not valid.";
 $lang['message_something_wrong'] = "Something wrong, please try again.";
 $lang['message_password_not_match'] = "You've entered the wrong password.";
 $lang['message_new_user_created'] = "New user has been created.";
+$lang['message_user_deleted'] = "User has been deleted.";
