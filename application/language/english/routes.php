@@ -10,3 +10,4 @@ $route['user/profile'] = 'user/profile';
 $route['password/request_link'] = 'password/request_link';
 $route['password/change'] = 'password/change';
 $route['user/add_new'] = 'user/add_new';
+$route['user/lists'] = 'user/lists';
