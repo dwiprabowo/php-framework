@@ -7,6 +7,7 @@ abstract class Auth_Controller extends App_Controller{
         parent::__construct();
         if(!$this->login_model->ready()){
             notif(['warning', 'message_please_login']);
+            $this->login_model->deleteData();
             redirect('login');
         }
         $this->_initUser();

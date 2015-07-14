@@ -20,3 +20,7 @@ $lang['message_something_wrong'] = "Something wrong, please try again.";
 $lang['message_password_not_match'] = "You've entered the wrong password.";
 $lang['message_new_user_created'] = "New user has been created.";
 $lang['message_user_deleted'] = "User has been deleted.";
+$lang['message_cannot_delete_user'] = "User cannot be deleted.";
+$lang['message_cannot_deactivate_user'] = "User cannot be deactivated.";
+$lang['message_user_deactivated'] = "User has been deactivated.";
+$lang['message_user_activated'] = "User has been activated.";

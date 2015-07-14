@@ -40,6 +40,7 @@ class Login_model extends CI_Model{
         $result = $this->user_model->get_by([
             'email' => $email,
             'password' => md5($password),
+            'active' => 1,
         ]) and $this->setData($result, $remember);
         if(!$result)return false;
         $this->notif->addFlash(
@@ -60,11 +61,14 @@ class Login_model extends CI_Model{
 
     function ready(){
         $result = $this->session->userdata(self::KEYWORD);
+        if($result){
+            $result = $this->user_model->get_active($result);
+        }
         return $result;
     }
 
     function getId(){
-        return $this->ready();
+        return @$this->ready()->id;
     }
 
     function setData($user, $remember){

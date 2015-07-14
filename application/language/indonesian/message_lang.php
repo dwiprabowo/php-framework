@@ -20,3 +20,7 @@ $lang['message_something_wrong'] = "Terjadi kesalahan, mohon coba lagi.";
 $lang['message_password_not_match'] = "Password yang Anda masukan salah.";
 $lang['message_new_user_created'] = "Pengguna baru telah dibuat.";
 $lang['message_user_deleted'] = "Pengguna telah dihapus.";
+$lang['message_cannot_delete_user'] = "Pengguna tidak bisa dihapus.";
+$lang['message_cannot_deactivate_user'] = "Pengguna tidak bisa dinonaktifkan.";
+$lang['message_user_deactivated'] = "Pengguna telah dinonaktifkan.";
+$lang['message_user_activated'] = "Pengguna telah diaktifkan.";

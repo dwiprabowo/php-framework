@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_Model extends MY_Model{
 
+    const ROLE_MASTER = 'master';
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
+
     protected $before_create = [
         'password_hash',
         'create_date',
@@ -12,6 +16,13 @@ class User_Model extends MY_Model{
         'password_hash',
         'update_date',
     ];
+
+    function get_active($id){
+        return $this->get_by([
+            'id' => $id,
+            'active' => 1,
+        ]);
+    }
 
     function create_date($data){
         $data['created_date'] = date("Y-m-d H:i:s");

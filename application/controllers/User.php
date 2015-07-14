@@ -20,9 +20,57 @@ class User extends Auth_Controller{
         }else{
             log_message('error', 'User not found!');
         }
+        $this->lists();
+    }
+
+    private function _theOnlyMaster($user){
+        $count_master = $this->user_model->count_by([
+            'role' => User_Model::ROLE_MASTER,
+            'active' => 1,
+        ]);
+        if(
+            (
+                $user->role === User_Model::ROLE_MASTER
+                and
+                $user->active
+            )
+            and
+            !($count_master > 1)
+        ){
+            return true;
+        }
+        return false;
+    }
+
+    private function _actionActivate($user){
+        $updated = $this->user_model->update($user->id, [
+            'active' => 1
+        ]);
+        if($updated){
+            notif(['success', 'message_user_activated']);
+            redirect('user/lists');
+        }
+    }
+
+    private function _actionDeactivate($user){
+        if($this->_theOnlyMaster($user)){
+            notif('message_cannot_deactivate_user', false);
+            return;
+        }
+        $updated = $this->user_model->update($user->id, [
+            'active' => 0
+        ]);
+        if($updated){
+            notif(['success', 'message_user_deactivated']);
+            redirect('user/lists');
+        }
     }
 
     private function _actionDelete($user){
+        if($this->_theOnlyMaster($user)){
+            notif('message_cannot_delete_user', false);
+            return;
+        }
         $deleted = $this->user_model->delete($user->id);
         if($deleted){
             notif(['success', 'message_user_deleted']);
@@ -40,6 +88,7 @@ class User extends Auth_Controller{
             'password ~ required|min_length[8]',
         ]);
         if($this->validate->run()){
+            $data['active'] = 1;
             $this->user_model->insert($data);
             notif(['success', 'message_new_user_created']);
             redirect('dashboard');
