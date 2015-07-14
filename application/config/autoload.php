@@ -108,7 +108,9 @@ $autoload['helper'] = [
 |
 */
 
-$autoload['config'] = array('upload', 'language', 'email');
+$autoload['config'] = [
+    'upload', 'language', 'email', 'variable'
+];
 
 
 /*

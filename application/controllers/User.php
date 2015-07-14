@@ -3,6 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends Auth_Controller{
 
+    function add_new_post(){
+        $data = $this->input->post(null);
+        $this->validate->setRules([
+            'email ~ required|valid_email|autocorrect[email]',
+            'password ~ required|min_length[8]',
+        ]);
+        if($this->validate->run()){
+            $this->user_model->insert($data);
+            notif(['success', 'message_new_user_created']);
+            redirect('dashboard');
+        }
+    }
+
     function profile(){
         $this->_var(
             'user'

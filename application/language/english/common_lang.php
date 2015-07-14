@@ -35,3 +35,5 @@ $lang['common_remember_me'] = "Remember me";
 $lang['common_new_signup'] = "New? sign up";
 $lang['common_request_new_password_explanation'] = "We will send the link to the Email entered above.";
 $lang['common_dashboard'] = "Dashboard";
+$lang['common_add_new_user'] = "Add New User";
+$lang['common_role'] = "Role";

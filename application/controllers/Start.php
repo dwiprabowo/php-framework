@@ -14,7 +14,6 @@ class Start extends App_Controller{
             'password ~ required|min_length[8]',
         ]);
         if($this->validate->run()){
-            $data['password'] = $data['password'];
             $this->user_model->insert($data);
             redirect();
         }

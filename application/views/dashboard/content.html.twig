@@ -1,11 +1,30 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="#">
+                        {{ t('common_dashboard') }}
+                    </a>
+                </li>
+                <li class="active">
+                    {{ t('common_user') }}
+                </li>
+            </ol>
+        </div>
         <div class="col-xs-12 col-sm-9">
             <p class="pull-right visible-xs">
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
             </p>
             <div class="jumbotron">
-                <h2>Dashboard | {{ t('common_users') }}</h2>
+                <h2>
+                    Dashboard | {{ t('common_users') }}
+                    <a class="pull-right" href="{{ site_url('user/add_new') }}">
+                        <button class="btn btn-lg btn-warning">
+                            <i class="fa fa-user-plus"></i>
+                        </button>
+                    </a>
+                </h2>
                 <hr>
                 <h1 class="dashboard-items">
                     <span class="text-primary">

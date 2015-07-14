@@ -1,0 +1,69 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block subtitle %} | {{ t('common_master_create') }} {% endblock %}
+
+{% block content %}
+    {% include 'template/partial/navbar.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">
+                            {{ t('common_dashboard') }}
+                        </a>
+                    </li>
+                    <li class="active">
+                        {{ t('common_user') }}
+                    </li>
+                </ol>
+            </div>
+            <div class="col-xs-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ t('common_add_new_user') }}
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" class="form-horizontal" rule="form">
+                            <input type="hidden" value="master" name="role">
+                            {{ twbs_h_input('email')|raw }}
+                            {{ twbs_h_input({
+                                'name': 'password',
+                                'type': 'password',
+                            })|raw }}
+                            <div class="form-group">
+                                <label 
+                                    class="col-xs-4 control-label" 
+                                    for="role">
+                                    {{ t('common_role') }}
+                                </label>
+                                <div class="col-xs-8">
+                                    {{ form_dropdown(
+                                        'role'
+                                        , config('user_roles')
+                                        , 'user'
+                                        , 'class="form-control" id="role"'
+                                    )|raw }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-primary btn-block">
+                                        {{ t('common_create') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        autoFocus();
+    </script>
+{% endblock %}

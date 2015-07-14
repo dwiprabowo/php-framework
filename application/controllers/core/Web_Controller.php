@@ -138,6 +138,7 @@ abstract class Web_Controller extends WebMethod_Controller{
             't',
             'url',
             'current_uri',
+            'form_dropdown',
         ];
     }
 
