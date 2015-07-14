@@ -36,10 +36,10 @@ class MY_Model extends CI_Model
     /**
      * Support for soft deletes and this model's 'deleted' key
      */
-    protected $soft_delete = FALSE;
-    protected $soft_delete_key = 'deleted';
-    protected $_temporary_with_deleted = FALSE;
-    protected $_temporary_only_deleted = FALSE;
+    protected $soft_delete = true;
+    protected $soft_delete_key = 'deleted_date';
+    protected $_temporary_with_deleted = true;
+    protected $_temporary_only_deleted = "IS NOT NULL";
 
     /**
      * The various callbacks available to the model. Each are
@@ -135,7 +135,7 @@ class MY_Model extends CI_Model
 
         if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
         {
-            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+            $this->_database->where($this->soft_delete_key, $this->_temporary_only_deleted);
         }
 
 		$this->_set_where($where);
@@ -184,7 +184,7 @@ class MY_Model extends CI_Model
 
         if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
         {
-            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+            $this->_database->where($this->soft_delete_key, $this->_temporary_only_deleted);
         }
 
         $result = $this->_database->get($this->_table)
@@ -553,7 +553,7 @@ class MY_Model extends CI_Model
     {
         if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
         {
-            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+            $this->_database->where($this->soft_delete_key, $this->_temporary_only_deleted);
         }
 
         $where = func_get_args();
@@ -569,7 +569,7 @@ class MY_Model extends CI_Model
     {
         if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
         {
-            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+            $this->_database->where($this->soft_delete_key, $this->_temporary_only_deleted);
         }
 
         return $this->_database->count_all($this->_table);
@@ -647,7 +647,7 @@ class MY_Model extends CI_Model
      */
     public function only_deleted()
     {
-        $this->_temporary_only_deleted = TRUE;
+        $this->_temporary_only_deleted = "IS NULL";
         return $this;
     }
 

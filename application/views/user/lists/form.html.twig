@@ -1,0 +1,17 @@
+<form>
+    {% if user.active %}
+        <button 
+            class="fa fa-pause text-muted" 
+            title="{{ t('common_inactivate') }}"
+        ></button>
+    {% else %}
+        <button 
+            class="fa fa-play text-success" 
+            title="{{ t('common_activate') }}"
+        ></button>
+    {% endif %}
+    <button 
+        class="fa fa-stop text-danger" 
+        title="{{ t('common_delete') }}"
+    ></button>
+</form>

@@ -37,3 +37,6 @@ $lang['common_request_new_password_explanation'] = "Kami akan mengirimkan tautan
 $lang['common_dashboard'] = "Dasbor";
 $lang['common_add_new_user'] = "Tambah Pengguna Baru";
 $lang['common_role'] = "Jabatan";
+$lang['common_inactivate'] = "Menonaktifkan";
+$lang['common_activate'] = "Aktifasi";
+$lang['common_delete'] = "Hapus";

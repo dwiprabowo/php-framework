@@ -37,3 +37,6 @@ $lang['common_request_new_password_explanation'] = "We will send the link to the
 $lang['common_dashboard'] = "Dashboard";
 $lang['common_add_new_user'] = "Add New User";
 $lang['common_role'] = "Role";
+$lang['common_inactivate'] = "Inactivate";
+$lang['common_activate'] = "Activate";
+$lang['common_delete'] = "Delete";

@@ -1,0 +1,84 @@
+{% extends 'template/twbs_bootstrap.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block style %}
+    <style>
+        .dashboard-items{
+            display: inline-block;
+            margin: 10px 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'template/partial/navbar.html.twig' %}
+
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">
+                            {{ t('common_dashboard') }}
+                        </a>
+                    </li>
+                    <li class="active">
+                        {{ t('common_user') }}
+                    </li>
+                </ol>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <p class="pull-right visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                </p>
+                <div class="jumbotron">
+                    <div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th class="text-center">Active</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            {% set number = 1 %}
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ number }}</td>
+                                    <td>{{ user.fullname }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td class="text-center">
+                                        {% if user.active %}
+                                            <i class="fa fa-play text-success">
+                                            </i>
+                                        {% else %}
+                                            <i class="fa fa-pause text-muted">
+                                            </i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% 
+                                            include 
+                                                'user/lists/form.html.twig' 
+                                            with {'user': user} only 
+                                        %}
+                                    </td>
+                                </tr>
+                                {% set number = number + 1 %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div><!--/.col-xs-12.col-sm-9-->
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        {{ t('common_users') }}
+                    </a>
+                    <a href="#" class="list-group-item">Another Link</a>
+                </div>
+            </div><!--/.sidebar-offcanvas-->
+        </div><!--/row-->
+    </div>
+{% endblock %}

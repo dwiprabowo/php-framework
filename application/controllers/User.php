@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends Auth_Controller{
 
+    function lists(){
+        $users = $this->user_model->get_all();
+        $this->_var('users', $users);
+    }
+
     function add_new_post(){
         $data = $this->input->post(null);
         $this->validate->setRules([
