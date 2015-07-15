@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li {{ class_active('dashboard')|raw }}>
                     <a href="{{ site_url('dashboard') }}">
                         {{ t('common_dashboard') }}
                     </a>
@@ -41,12 +41,12 @@
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
-                        <li>
+                        <li {{ class_active('user/profile')|raw }}>
                             <a href="{{ site_url('user/profile') }}">
                                 {{ t('common_profile') }}
                             </a>
                         </li>
-                        <li>
+                        <li {{ class_active('password/change')|raw }}>
                             <a href="{{ site_url('password/change') }}">
                                 {{ t('common_change_password') }}
                             </a>

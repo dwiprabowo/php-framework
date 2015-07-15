@@ -30,6 +30,18 @@ if(!function_exists('t_uri')){
 if(!function_exists('site_url')){
     function site_url($uri = '', $protocol = NULL){
         $uri = t_uri($uri);
+        if($uri === current_uri(config_item('language'))){
+            return "javascript:void(0)";
+        }
         return get_instance()->config->site_url($uri, $protocol);
+    }
+}
+
+if(!function_exists('class_active')){
+    function class_active($uri){
+        if(site_url($uri) === "javascript:void(0)"){
+            return 'class="active"';
+        }
+        return "";
     }
 }
