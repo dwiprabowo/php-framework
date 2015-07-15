@@ -27,10 +27,20 @@
                         role="button" 
                         aria-expanded="false"
                     >
-                        <img id="user-login-pp" src="{{ base_url(nav_profile_picture) }}">
+                        <img 
+                            id="user-login-pp" 
+                            src="{{ base_url(nav_profile_picture) }}"
+                            title="{{ user_label }}"
+                        >
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a>
+                                <strong>{{ user_label }}</strong>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
                         <li>
                             <a href="{{ site_url('user/profile') }}">
                                 {{ t('common_profile') }}
