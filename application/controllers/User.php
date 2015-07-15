@@ -3,9 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends Auth_Controller{
 
-    const ACTION_INACTIVATE = 0;
-    const ACTION_ACTIVATE = 1;
-    const ACTION_DELETE = 2;
+    const ACTION_DEACTIVATE = 'deactivate';
+    const ACTION_ACTIVATE = 'activate';
+    const ACTION_DELETE = 'delete';
 
     function lists(){
         $users = $this->user_model->get_all();
@@ -15,10 +15,35 @@ class User extends Auth_Controller{
     function lists_post(){
         extract($this->input->post());
         $user = $this->user_model->get($id);
-        if($user){
+        $login_user = $this->login_model->ready();
+        if(
+            $user 
+            and 
+            (
+                (
+                    (
+                        config_item('user_role_values')[$login_user->role]
+                        >
+                        config_item('user_role_values')[$user->role]
+                    )
+                    or
+                    (
+                        (
+                            config_item('user_role_values')[$login_user->role]
+                            ===
+                            config_item('user_role_values')[$user->role]
+                        )
+                        and
+                        $action === self::ACTION_ACTIVATE
+                    )
+                )
+                or
+                $user->id === $login_user->id
+            )
+        ){
             $this->{'_action'.ucfirst($action)}($user);
         }else{
-            log_message('error', 'User not found!');
+            notif('message_you_have_no_permission', false);
         }
         $this->lists();
     }

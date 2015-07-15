@@ -6,3 +6,8 @@ $config['user_roles'] = [
     'admin' => 'Admin', 
     'user' => 'User',
 ];
+$config['user_role_values'] = [
+    'master' => 3,
+    'admin' => 2,
+    'user' => 1,
+];

@@ -24,3 +24,4 @@ $lang['message_cannot_delete_user'] = "User cannot be deleted.";
 $lang['message_cannot_deactivate_user'] = "User cannot be deactivated.";
 $lang['message_user_deactivated'] = "User has been deactivated.";
 $lang['message_user_activated'] = "User has been activated.";
+$lang['message_you_have_no_permission'] = "You have no permission.";

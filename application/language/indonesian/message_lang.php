@@ -24,3 +24,4 @@ $lang['message_cannot_delete_user'] = "Pengguna tidak bisa dihapus.";
 $lang['message_cannot_deactivate_user'] = "Pengguna tidak bisa dinonaktifkan.";
 $lang['message_user_deactivated'] = "Pengguna telah dinonaktifkan.";
 $lang['message_user_activated'] = "Pengguna telah diaktifkan.";
+$lang['message_you_have_no_permission'] = "Anda tidak memiliki ijin untuk hal itu.";
