@@ -8,6 +8,10 @@ abstract class App_Controller extends Web_Controller{
         $this->_init();
     }
 
+    function _isLogin(){
+        return $this->login_model->ready();
+    }
+
     private function _init(){
         $this->load->model('master_model');
         if($this->uri->uri_string() !== t_uri($this->getPage())){
@@ -29,4 +33,6 @@ abstract class App_Controller extends Web_Controller{
             return $this->uri->uri_string();
         }
     }
+
+    function _models(){return ['login'];}
 }

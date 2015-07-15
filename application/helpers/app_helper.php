@@ -1,6 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('user_email_unique')){
+    function user_email_unique($email){
+        $user = get_instance()->_isLogin();
+        $result = get_instance()->validate->is_unique($email, 'users.email');
+        if($user){
+            $result = (($user->email === $email) or $result);
+        }
+        return $result;
+    }
+}
+
 if(!function_exists('change_every')){
     function change_every(&$items, $funcname){
         array_walk_recursive($items, $funcname);

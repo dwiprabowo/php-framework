@@ -109,7 +109,7 @@ class User extends Auth_Controller{
     function add_new_post(){
         $data = $this->input->post(null);
         $this->validate->setRules([
-            'email ~ required|valid_email|autocorrect[email]',
+            'email ~ required|valid_email|is_unique[users.email]|autocorrect[email]',
             'password ~ required|min_length[8]',
         ]);
         if($this->validate->run()){
@@ -135,7 +135,7 @@ class User extends Auth_Controller{
             'gender ~ required',
             'birth_date ~ required|valid_date',
             'birth_place ~ required',
-            'email ~ required|valid_email|autocorrect[email]',
+            'email ~ required|valid_email|user_email_unique|autocorrect[email]',
             'phone ~ required',
             'occupation ~ required',
             'address ~ required',

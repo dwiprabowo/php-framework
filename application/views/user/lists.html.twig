@@ -46,6 +46,11 @@
                                     <td>{{ user.fullname }}</td>
                                     <td>{{ user.email }}</td>
                                     <td class="text-center">
+                                        <i class="fa fa-{{ 
+                                            config('user_role_icon')[user.role]['fa']
+                                        }} {{ config('user_role_icon')[user.role]['color'] }}">
+                                        </i>
+                                        /
                                         {% if user.active %}
                                             <i class="fa fa-play text-success">
                                             </i>
