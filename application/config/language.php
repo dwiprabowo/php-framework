@@ -18,6 +18,18 @@ $config['available_languages'] = [
     ],
 ];
 
+$enabled_lang = unserialize(PROJECT_ENABLED_LANG);
+
+foreach($enabled_lang as $lang){
+    $config['available_languages'][$lang]['enabled'] = true;
+}
+
+foreach($config['available_languages'] as $k => $v){
+    if(!@$v['enabled']){
+        unset($config['available_languages'][$k]);
+    }
+}
+
 $config['lang_table'] = [
     'en-US' => [
         'English',
