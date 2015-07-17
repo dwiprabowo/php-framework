@@ -50,14 +50,14 @@
                                         type="radio" 
                                         name="gender" 
                                         {{ (user.gender?:set_value('gender')) == 'm'?'checked':'' }}
-                                        value="m"> Male
+                                        value="m"> {{ t('common_male') }}
                                 </label>
                                 <label class="radio-inline">
                                     <input 
                                         type="radio" 
                                         name="gender" 
                                         {{ (user.gender?:set_value('gender')) == 'f'?'checked':'' }}
-                                        value="f"> Female
+                                        value="f"> {{ t('common_female') }}
                                 </label>
                                 <div>
                                     {% if form_error('gender') %}

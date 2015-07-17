@@ -43,3 +43,5 @@ $lang['common_delete'] = "Hapus";
 $lang['common_are_you_sure'] = "Apakah Anda yakin?";
 $lang['common_status'] = "Status";
 $lang['common_action'] = "Aksi";
+$lang['common_male'] = "Pria";
+$lang['common_female'] = "Wanita";
