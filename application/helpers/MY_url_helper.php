@@ -28,9 +28,9 @@ if(!function_exists('t_uri')){
 }
 
 if(!function_exists('site_url')){
-    function site_url($uri = '', $protocol = NULL){
+    function site_url($uri = '', $protocol = NULL, $harduse = false){
         $uri = t_uri($uri);
-        if($uri === current_uri(config_item('language'))){
+        if($uri === current_uri(config_item('language')) && !$harduse){
             return "javascript:void(0)";
         }
         return get_instance()->config->site_url($uri, $protocol);
