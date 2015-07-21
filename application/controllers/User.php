@@ -106,6 +106,30 @@ class User extends Auth_Controller{
         $this->lists();
     }
 
+    function add_new(){
+        $user_role_values = config_item('user_role_values');
+        $save_role = [];
+        foreach($user_role_values as $k => $role){
+            if(
+                $role
+                >
+                config_item('user_role_values')[$this->_user()->role]
+            ){
+                $save_role[] = $k;
+            }
+        }
+        $user_roles = config_item('user_roles');
+        foreach ($user_roles as $k => $v) {
+            if(in_array($k, $save_role)){
+                unset($user_roles[$k]);
+            }
+        }
+        $this->_var(
+            'available_roles'
+            , $user_roles
+        );
+    }
+
     function add_new_post(){
         $data = $this->input->post(null);
         $this->validate->setRules([
@@ -118,6 +142,7 @@ class User extends Auth_Controller{
             notif(['success', 'message_new_user_created']);
             redirect('dashboard');
         }
+        $this->add_new();
     }
 
     function profile(){

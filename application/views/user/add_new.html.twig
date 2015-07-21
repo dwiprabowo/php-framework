@@ -38,7 +38,7 @@
                     <div class="col-sm-8">
                         {{ form_dropdown(
                             'role'
-                            , config('user_roles')
+                            , available_roles
                             , 'user'
                             , 'class="form-control" id="role"'
                         )|raw }}

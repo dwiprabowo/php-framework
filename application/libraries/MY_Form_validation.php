@@ -78,4 +78,16 @@ class MY_Form_validation extends CI_Form_validation{
         return (bool) (date('Y-m-d', strtotime($str)) === $str);
     }
 
+    public function is_unique($str, $field)
+    {
+        sscanf($field, '%[^.].%[^.]', $table, $field);
+        $result = (
+            $this->CI->db->limit(1)
+            ->where('deleted_date IS NULL')
+            ->get_where(
+                $table, array($field => $str)
+            )->num_rows() === 0
+        );
+        return isset($this->CI->db)? $result: FALSE;
+    }
 }
