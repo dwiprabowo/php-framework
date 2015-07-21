@@ -38,9 +38,13 @@ if(!function_exists('site_url')){
 }
 
 if(!function_exists('class_active')){
-    function class_active($uri){
+    function class_active($uri, $nameonly = false){
         if(site_url($uri) === "javascript:void(0)"){
-            return 'class="active"';
+            if(!$nameonly){
+                return 'class="active"';
+            }else{
+                return 'active';
+            }
         }
         return "";
     }

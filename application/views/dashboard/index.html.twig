@@ -1,18 +1,49 @@
-{% extends 'template/twbs_bootstrap.html.twig' %}
+{% extends 'template/dashboard.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
-
-{% block style %}
-    <style>
-        .dashboard-items{
-            display: inline-block;
-            margin: 10px 30px;
-        }
-    </style>
+{% block dashboard_breadcrumb %}
+    <li class="active">
+        {{ t('common_dashboard') }}
+    </li>
 {% endblock %}
 
-{% block content %}
-    {% include 'template/partial/navbar.html.twig' %}
-
-    {% include 'dashboard/content.html.twig' %}
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-3 text-center">
+                    <a href="{{ site_url('dashboard/users') }}">
+                        <div class="dashboard-items btn btn-default">
+                            <div class="wrapper">
+                                <div class="content">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 text-center">
+                    <a href="{{ site_url('dashboard/settings') }}">
+                        <div class="dashboard-items btn btn-default">
+                            <div class="wrapper">
+                                <div class="content">
+                                    <i class="fa fa-gear"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 text-center">
+                    <a href="{{ site_url('dashboard/activities') }}">
+                        <div class="dashboard-items btn btn-default">
+                            <div class="wrapper">
+                                <div class="content">
+                                    <i class="fa fa-history"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

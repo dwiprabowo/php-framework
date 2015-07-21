@@ -7,7 +7,13 @@ class Dashboard extends Auth_Controller{
         parent::__construct();
     }
 
-    function index(){
+    function index(){}
+
+    function settings(){}
+
+    function activities(){}
+
+    function users(){
         $this->_var(
             'users_count', 
             [

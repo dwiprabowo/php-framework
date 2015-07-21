@@ -1,0 +1,18 @@
+{% extends 'template/dashboard.html.twig' %}
+
+{% block dashboard_breadcrumb %}
+    <li>
+        <a href="{{ site_url('dashboard') }}">
+            {{ t('common_dashboard') }}
+        </a>
+    </li>
+    <li class="active">
+        {{ t('common_settings') }}
+    </li>
+{% endblock %}
+
+{% block dashboard_content %}
+    <h2>
+        Nothing here yet ...!
+    </h2>
+{% endblock %}

@@ -85,7 +85,11 @@ abstract class Web_Controller extends WebMethod_Controller{
                 );
             }
             $found_uri = array_search($real_uri, $route);
-            $this->current_uri[$lang] = $found_uri;
+            if($found_uri){
+                $this->current_uri[$lang] = $found_uri;
+            }else{
+                $this->current_uri[$lang] = $uri_string;
+            }
         }
     }
 
