@@ -1,6 +1,22 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+if(!function_exists('role_higher_than')){
+    function role_higher($role = 'user'){
+        $rolevalue = config_item('user_role_values')[$role];
+        if(
+            config_item('user_role_values')[
+                get_instance()->_user()->role 
+            ]
+            >= 
+            $rolevalue
+        ){
+            return true;
+        }
+        return false;
+    }
+}
+
 if(!function_exists('user_email_unique')){
     function user_email_unique($email){
         $user = get_instance()->_isLogin();

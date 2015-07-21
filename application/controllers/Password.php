@@ -8,9 +8,13 @@ class Password extends App_Controller{
             'nav_profile_picture'
             , $this->login_model->getProfilePicture()
         );
-        $user = $this->login_model->ready();
-        $user_label = $user->fullname?:($user->email);
+        $this->user = $this->login_model->ready();
+        $user_label = $this->user->fullname?:($this->user->email);
         $this->_var('user_label', $user_label);
+    }
+
+    function _user(){
+        return $this->user;
     }
 
     private function _redirectIfLogin(){

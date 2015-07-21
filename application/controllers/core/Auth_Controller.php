@@ -16,6 +16,10 @@ abstract class Auth_Controller extends App_Controller{
         $this->_initUser();
     }
 
+    function _user(){
+        return $this->user;
+    }
+
     function _initUser(){
         $this->_var(
             'nav_profile_picture'

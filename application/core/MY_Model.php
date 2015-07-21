@@ -557,7 +557,9 @@ class MY_Model extends CI_Model
         }
 
         $where = func_get_args();
-        $this->_set_where($where);
+        if(@$where){
+            $this->_set_where($where);
+        }
 
         return $this->_database->count_all_results($this->_table);
     }
@@ -565,15 +567,19 @@ class MY_Model extends CI_Model
     /**
      * Fetch a total count of rows, disregarding any previous conditions
      */
-    public function count_all()
-    {
-        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
-        {
-            $this->_database->where($this->soft_delete_key.' '.$this->_temporary_only_deleted);
-        }
 
-        return $this->_database->count_all($this->_table);
-    }
+    /*
+        disabled bug cannot set soft_delete where
+    */
+    // public function count_all()
+    // {
+    //     if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+    //     {
+    //         $this->_database->where($this->soft_delete_key.' '.$this->_temporary_only_deleted);
+    //     }
+
+    //     return $this->_database->count_all($this->_table);
+    // }
 
     /**
      * Tell the class to skip the insert validation

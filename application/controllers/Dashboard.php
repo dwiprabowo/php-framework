@@ -5,6 +5,9 @@ class Dashboard extends Auth_Controller{
 
     function __construct(){
         parent::__construct();
+        if(!role_higher('admin')){
+            redirect('user/profile');
+        }
     }
 
     function index(){}
@@ -17,7 +20,7 @@ class Dashboard extends Auth_Controller{
         $this->_var(
             'users_count', 
             [
-                'total' => $this->user_model->count_all(),
+                'total' => $this->user_model->count_by(),
                 'active' => $this->user_model->count_by(['active' => 1]),
                 'inactive' => $this->user_model->count_by(['active' => 0]),
             ]

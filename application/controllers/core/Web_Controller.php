@@ -144,6 +144,7 @@ abstract class Web_Controller extends WebMethod_Controller{
             'current_uri',
             'form_dropdown',
             'class_active',
+            'role_higher',
         ];
     }
 
