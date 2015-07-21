@@ -7,6 +7,33 @@ class User extends Auth_Controller{
     const ACTION_ACTIVATE = 'activate';
     const ACTION_DELETE = 'delete';
 
+    function change_password_post(){
+        $this->validate->setRules([
+            'new_password ~ required|min_length[8]',
+        ]);
+        if(!$this->validate->run()){
+            return;
+        }
+        extract($this->input->post());
+        $id = $this->login_model->getId();
+        $user = $this->user_model->get_by([
+            'id' => $id,
+            'password' => md5($old_password),
+        ]);
+        if(!$user){
+            notif('message_password_not_match', false);
+            return;
+        }
+        $updated = $this->user_model->update($id, [
+            'password' => $new_password
+        ]);
+        if($updated){
+            notif(['success', 'message_success_change_password']);
+            redirect('user/profile');
+        }
+        notif('message_something_wrong');
+    }
+
     function lists(){
         $users = $this->user_model->get_all();
         $this->_var('users', $users);
