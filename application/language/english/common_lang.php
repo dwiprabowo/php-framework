@@ -43,3 +43,5 @@ $lang['common_delete'] = "Delete";
 $lang['common_are_you_sure'] = "Are You sure?";
 $lang['common_status'] = "Status";
 $lang['common_action'] = "Action";
+$lang['common_web_api'] = "Web API";
+$lang['common_data_moderation'] = "Data Moderation";

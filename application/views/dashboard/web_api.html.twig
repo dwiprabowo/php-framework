@@ -1,0 +1,108 @@
+{% extends 'template/dashboard.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    <style>
+        #api-lists li{
+            cursor: pointer;
+        }
+        #api-lists li.active{
+            cursor: default;
+        }
+    </style>
+{% endblock %}
+
+{% block dashboard_breadcrumb %}
+    <li>
+        <a href="{{ site_url('dashboard') }}">
+            {{ t('common_dashboard') }}
+        </a>
+    </li>
+    <li class="active">
+        {{ t('common_web_api') }}
+    </li>
+{% endblock %}
+
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-sm-5">
+            <ul class="list-group" id="api-lists">
+                <li 
+                    class="list-group-item active"
+                    id="fetch-locations" 
+                >Ambil Data Lokasi</li>
+                <li 
+                    class="list-group-item"
+                    id="input-location" 
+                >Lokasi Masukan</li>
+            </ul>
+        </div>
+        <div class="col-sm-7">
+            <div 
+                class="panel panel-default" 
+                id="fetch-locations-interface"
+            >
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Longitude</label>
+                            <input class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Latitude</label>
+                            <input class="form-control">
+                        </div>
+                    </form>
+                    <div class="well">
+                        <h4>Data:</h4>
+                        Fetch Locations
+                    </div>
+                </div>
+            </div>
+            <div 
+                class="panel panel-default hidden" 
+                id="input-location-interface"
+            >
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Longitude</label>
+                            <input class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Latitude</label>
+                            <input class="form-control">
+                        </div>
+                    </form>
+                    <div class="well">
+                        <h4>Data:</h4>
+                        Input Location
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            var container = $("#api-lists");
+            var items = container.find(".list-group-item");
+            items.each(function(){
+                var self = $(this);
+                self.on('click', function(){
+                    for(var i = 0;i < items.length;i++){
+                        $(items[i]).removeClass('active');
+                        $("#"
+                            +$(items[i]).prop("id")
+                            +"-interface"
+                        ).addClass("hidden");
+                    }
+                    $(self).addClass('active');
+                    $("#"+self.prop("id")+"-interface").removeClass("hidden");
+                });
+            });
+        });
+    </script>
+{% endblock %}

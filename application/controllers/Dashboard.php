@@ -11,10 +11,10 @@ class Dashboard extends Auth_Controller{
     }
 
     function index(){}
+    
+    function data_moderation(){}
 
-    function settings(){}
-
-    function activities(){}
+    function web_api(){}
 
     function users(){
         $this->_var(

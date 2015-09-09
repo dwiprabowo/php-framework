@@ -48,3 +48,5 @@ $lang['common_male'] = "Pria";
 $lang['common_female'] = "Wanita";
 $lang['common_settings'] = "Pengaturan";
 $lang['common_activities'] = "Kegiatan";
+$lang['common_web_api'] = "Web API";
+$lang['common_data_moderation'] = "Moderasi Data";

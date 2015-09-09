@@ -1,0 +1,52 @@
+{% extends 'template/dashboard.html.twig' %}
+
+{% block dashboard_breadcrumb %}
+    <li>
+        <a href="{{ site_url('dashboard') }}">
+            {{ t('common_dashboard') }}
+        </a>
+    </li>
+    <li class="active">
+        {{ t('common_web_api') }}
+    </li>
+{% endblock %}
+
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <tr>
+                    <th style="width: 10%;" class="text-center">#</th>
+                    <th style="width: 50%;" class="text-center">user</th>
+                    <th style="width: 40%;" class="text-center">action</th>
+                </tr>
+                <tr>
+                    <td style="vertical-align: middle;" class="text-right">1</td>
+                    <td style="vertical-align: middle;">
+                        DWIPRABOWO
+                    </td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <button class="btn btn-success">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Data Detail</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <img data-src="holder.js/140x180">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

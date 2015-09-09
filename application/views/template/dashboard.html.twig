@@ -71,20 +71,20 @@
                         {{ t('common_users') }}
                     </a>
                     <a 
-                        href="{{ site_url('dashboard/settings') }}" 
+                        href="{{ site_url('dashboard/web_api') }}" 
                         class="list-group-item {{ 
-                            class_active('dashboard/settings', true)|raw 
+                            class_active('dashboard/web_api', true)|raw 
                         }}"
                     >
-                        {{ t('common_settings') }}
+                        {{ t('common_web_api') }}
                     </a>
                     <a 
-                        href="{{ site_url('dashboard/activities') }}" 
+                        href="{{ site_url('dashboard/data_moderation') }}" 
                         class="list-group-item {{ 
-                            class_active('dashboard/activities', true)|raw 
+                            class_active('dashboard/data_moderation', true)|raw 
                         }}"
                     >
-                        {{ t('common_activities') }}
+                        {{ t('common_data_moderation') }}
                     </a>
                 </div>
             </div>
