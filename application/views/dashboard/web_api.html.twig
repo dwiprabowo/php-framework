@@ -9,6 +9,9 @@
         #api-lists li.active{
             cursor: default;
         }
+        pre.small{
+            font-size: 10px;
+        }
     </style>
 {% endblock %}
 
@@ -25,7 +28,7 @@
 
 {% block dashboard_content %}
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-3">
             <ul class="list-group" id="api-lists">
                 <li 
                     class="list-group-item active"
@@ -37,25 +40,31 @@
                 >Lokasi Masukan</li>
             </ul>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-9">
             <div 
                 class="panel panel-default" 
                 id="fetch-locations-interface"
             >
                 <div class="panel-body">
-                    <form>
+                    <form method="get">
                         <div class="form-group">
-                            <label class="control-label">Longitude</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Latitude</label>
-                            <input class="form-control">
+                            <div>
+                                access url: {base_url}/api/web/locations
+                            </div>
+                            <blockquote>
+                                Web API Akan memberikan semua lokasi yang 
+                                tersedia jika <i>status</i> <b>true</b>,
+                                jika <i>status</i> <b>false</b> maka dapat
+                                dideteksi error melalui pesan.
+                            </blockquote>
+                            <button class="btn btn-primary">
+                                GET
+                            </button>
                         </div>
                     </form>
-                    <div class="well">
-                        <h4>Data:</h4>
-                        Fetch Locations
+                    <div class="well hidden">
+                        <h5>Response:</h5>
+                        <div class="response"></div>
                     </div>
                 </div>
             </div>
@@ -73,6 +82,11 @@
                             <label class="control-label">Latitude</label>
                             <input class="form-control">
                         </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
                     </form>
                     <div class="well">
                         <h4>Data:</h4>
@@ -85,12 +99,26 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{{
+        base_url('vendor/malsup/form/jquery.form.js')
+    }}"></script>
     <script>
         $(function(){
             var container = $("#api-lists");
             var items = container.find(".list-group-item");
             items.each(function(){
                 var self = $(this);
+                $("#"+self.prop("id")+"-interface form").ajaxForm({
+                    url: '{{base_url("api/web/locations")}}', 
+                    success: function(data){ 
+                        var parent = $("#"+self.prop("id")+"-interface");
+                        var wrapper = $("<pre class='small'>");
+                        wrapper.html(JSON.stringify(data, null, 4));
+                        parent.find(".response").html('');
+                        parent.find(".response").append(wrapper);
+                        parent.find(".well").removeClass("hidden");
+                    }
+                });
                 self.on('click', function(){
                     for(var i = 0;i < items.length;i++){
                         $(items[i]).removeClass('active');
