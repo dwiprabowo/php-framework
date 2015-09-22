@@ -32,10 +32,12 @@
             <ul class="list-group" id="api-lists">
                 <li 
                     class="list-group-item active"
+                    data-api-url="api/web/get_locations"
                     id="fetch-locations" 
                 >Ambil Data Lokasi</li>
                 <li 
                     class="list-group-item"
+                    data-api-url="api/web/add_user_locations"
                     id="input-location" 
                 >Lokasi Masukan</li>
             </ul>
@@ -73,24 +75,39 @@
                 id="input-location-interface"
             >
                 <div class="panel-body">
-                    <form>
+                    <form method="post">
                         <div class="form-group">
-                            <label class="control-label">Longitude</label>
-                            <input class="form-control">
+                            <div>
+                                access url: {base_url}/api/web/locations
+                            </div>
+                            <blockquote>
+                                Web API Akan memberikan semua lokasi yang 
+                                tersedia jika <i>status</i> <b>true</b>,
+                                jika <i>status</i> <b>false</b> maka dapat
+                                dideteksi error melalui pesan.
+                            </blockquote>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Google User Data</label>
+                            <input class="form-control" name="google_user_data" id="google_user_data">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Latitude</label>
-                            <input class="form-control">
+                            <input class="form-control" name="latitude">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Longitude</label>
+                            <input class="form-control" name="longitude">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary">
-                                Submit
+                                POST
                             </button>
                         </div>
                     </form>
-                    <div class="well">
-                        <h4>Data:</h4>
-                        Input Location
+                    <div class="well hidden">
+                        <h4>Response:</h4>
+                        <div class="response"></div>
                     </div>
                 </div>
             </div>
@@ -103,13 +120,18 @@
         base_url('vendor/malsup/form/jquery.form.js')
     }}"></script>
     <script>
+        $("#google_user_data").val(
+            JSON.stringify(
+                {"organizations":[{"startDate":"2009","title":"Sistem Informasi","primary":false,"name":"STMIK Amikom Yogyakarta","endDate":"2013","type":"school"}],"isPlusUser":true,"image":{"url":"https:\/\/lh3.googleusercontent.com\/-e1tsemQX_Xk\/AAAAAAAAAAI\/AAAAAAAAABE\/kHSkytYZfxA\/photo.jpg?sz=50"},"url":"https:\/\/plus.google.com\/105470245070799702246","id":"105470245070799702246","verified":false,"name":{"familyName":"Prabowo","givenName":"Dwi"},"gender":"male","circledByCount":0,"language":"en","displayName":"Dwi Prabowo","objectType":"person"}
+            )
+        );
         $(function(){
             var container = $("#api-lists");
             var items = container.find(".list-group-item");
             items.each(function(){
                 var self = $(this);
                 $("#"+self.prop("id")+"-interface form").ajaxForm({
-                    url: '{{base_url("api/web/locations")}}', 
+                    url: '{{base_url()}}'+self.data('api-url'), 
                     success: function(data){ 
                         var parent = $("#"+self.prop("id")+"-interface");
                         var wrapper = $("<pre class='small'>");

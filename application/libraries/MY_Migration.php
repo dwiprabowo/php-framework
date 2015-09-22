@@ -110,7 +110,7 @@ class MY_Migration extends CI_Migration{
     }
 
     function parseName($name){
-        $items = explode('_', $name);
+        $items = explode('_', $name, 2);
         try {
             self::actionType($items[self::MIGRATION_ACTIONTYPE]);
             self::tableName($items[self::MIGRATION_TABLENAME]);

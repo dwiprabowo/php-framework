@@ -261,7 +261,7 @@ switch (ENVIRONMENT)
 			$application_folder = $_temp;
 		}
 
-		define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
+		define('APPPATH', str_replace('\\', '/', $application_folder.DIRECTORY_SEPARATOR));
 	}
 	else
 	{

@@ -15,6 +15,11 @@ class Migration_create_locations extends MY_Migration{
                 'constraint' => '20,17',
                 'default' => 0,
             ],
+            'google_user_id' => [
+                'type' => 'VARCHAR',
+                'constraint' => 30,
+                'default' => null,
+            ],
             'created_date' => [
                 'type' => 'DATETIME',
                 'default' => null,
@@ -27,6 +32,16 @@ class Migration_create_locations extends MY_Migration{
                 'type' => 'DATETIME',
                 'default' => null,
             ],
+            'admin_id' => [
+                'type' => 'INT',
+                'constraint' => 9,
+                'default' => null,
+            ],
+            'review_status' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ]
         ];
     }
 }
