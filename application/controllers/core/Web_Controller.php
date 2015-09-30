@@ -124,6 +124,7 @@ abstract class Web_Controller extends WebMethod_Controller{
 
     private function _twigFilter(){
         return [
+            'json_decode',
             'base_url',
             'site_url',
             'set_value',

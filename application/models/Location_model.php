@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Location_Model extends MY_Model{
 
+    protected $belongs_to = ['google_user'];
+
     protected $before_create = [
         'create_date',
         'update_date',

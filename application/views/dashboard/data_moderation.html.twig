@@ -1,5 +1,17 @@
 {% extends 'template/dashboard.html.twig' %}
 
+{% block style %}
+    {{ parent() }}
+    <style>
+        .data-moderation .media-object{
+            max-width: 64px;
+        }
+/*        table.data-locations *{
+            font-size: 10px;
+        }
+*/    </style>
+{% endblock %}
+
 {% block dashboard_breadcrumb %}
     <li>
         <a href="{{ site_url('dashboard') }}">
@@ -7,46 +19,69 @@
         </a>
     </li>
     <li class="active">
-        {{ t('common_web_api') }}
+        {{ t('common_data_moderation') }}
     </li>
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="row">
-        <div class="col-sm-6">
-            <table class="table">
-                <tr>
-                    <th style="width: 10%;" class="text-center">#</th>
-                    <th style="width: 50%;" class="text-center">user</th>
-                    <th style="width: 40%;" class="text-center">action</th>
-                </tr>
-                <tr>
-                    <td style="vertical-align: middle;" class="text-right">1</td>
-                    <td style="vertical-align: middle;">
-                        DWIPRABOWO
-                    </td>
-                    <td class="text-center" style="vertical-align: middle;">
-                        <button class="btn btn-success">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="fa fa-remove"></i>
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Data Detail</h3>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <img data-src="holder.js/140x180">
+    <div class="row data-moderation">
+        {% set number = 1 %}
+        {% for user in users %}
+            <div class="col-sm-4">
+                {% if user.detail %}
+                    <div class="media">
+                        <div class="media-left">
+                            <a 
+                                href="{{ user.detail.url }}"
+                                target="_blank">
+                                <img 
+                                    class="media-object thumbnail" 
+                                    src="{{ user.detail.image.url }}" 
+                                    alt="{{ user.detail.displayName }}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                {{ user.detail.displayName }}
+                            </h4>
+                            {{ user.detail.gender }}
+                            <div>
+                                <span class="badge">
+                                    {{ user.pending_locations }}
+                                </span>
+                                Pending review
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="media">
+                        <div class="media-left">
+                            <a 
+                                href="javascript:void(0);"
+                                >
+                                <img 
+                                    class="media-object thumbnail" 
+                                    src="{{ base_url(
+                                        'assets/img/profile-picture-default.png'
+                                    ) }}" 
+                                    alt="Unknown User">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Unknown
+                            </h4>
+                            <div>
+                                <span class="badge">
+                                    {{ user.pending_locations }}
+                                </span>
+                                Pending review
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% set number = number + 1 %}
             </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
