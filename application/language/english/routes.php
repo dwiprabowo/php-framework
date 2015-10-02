@@ -11,3 +11,4 @@ $route['password/request_link'] = 'password/request_link';
 $route['password/change'] = 'user/change_password';
 $route['user/add_new'] = 'user/add_new';
 $route['user/lists'] = 'user/lists';
+$route['dashboard/data_moderation'] = 'dashboard/data_moderation';

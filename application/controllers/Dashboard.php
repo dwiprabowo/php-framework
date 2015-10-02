@@ -12,7 +12,7 @@ class Dashboard extends Auth_Controller{
 
     function index(){}
     
-    function data_moderation(){
+    function data_moderation($user_id = false){
         $this->_var(
             'users',
             $this->google_user_model->get_data()

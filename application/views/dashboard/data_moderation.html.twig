@@ -6,6 +6,15 @@
         .data-moderation .media-object{
             max-width: 64px;
         }
+        .data-moderation .media{
+            border: 1px solid transparent;
+            padding: 15px;
+            padding-bottom: 0;
+            cursor: pointer;
+        }
+        .data-moderation .media:hover{
+            border: 1px solid rgba(0, 0, 0, .2);
+        }
 /*        table.data-locations *{
             font-size: 10px;
         }
@@ -28,9 +37,18 @@
         {% set number = 1 %}
         {% for user in users %}
             <div class="col-sm-4">
-                {% if user.detail %}
-                    <div class="media">
-                        <div class="media-left">
+                <div 
+                    class="media" 
+                    onclick="window.location = '{{ 
+                        site_url(
+                            'dashboard/data_moderation'
+                            ~
+                            (user.detail?"/"~user.detail.id:"")
+                        )
+                    }}'"
+                >
+                    <div class="media-left">
+                        {% if user.detail %}
                             <a 
                                 href="{{ user.detail.url }}"
                                 target="_blank">
@@ -39,23 +57,7 @@
                                     src="{{ user.detail.image.url }}" 
                                     alt="{{ user.detail.displayName }}">
                             </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {{ user.detail.displayName }}
-                            </h4>
-                            {{ user.detail.gender }}
-                            <div>
-                                <span class="badge">
-                                    {{ user.pending_locations }}
-                                </span>
-                                Pending review
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="media">
-                        <div class="media-left">
+                        {% else %}
                             <a 
                                 href="javascript:void(0);"
                                 >
@@ -66,21 +68,26 @@
                                     ) }}" 
                                     alt="Unknown User">
                             </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
+                        {% endif %}
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {% if user.detail %}
+                                {{ user.detail.displayName }}
+                            {% else %}
                                 Unknown
-                            </h4>
-                            <div>
-                                <span class="badge">
-                                    {{ user.pending_locations }}
-                                </span>
-                                Pending review
-                            </div>
+                            {% endif %}
+                        </h4>
+                        {{ user.detail.gender }}
+                        <div>
+                            <span class="badge">
+                                {{ user.pending_locations }}
+                            </span>
+                            Lokasi
                         </div>
                     </div>
-                {% endif %}
-            {% set number = number + 1 %}
+                </div>
+                {% set number = number + 1 %}
             </div>
         {% endfor %}
     </div>

@@ -11,3 +11,4 @@ $route['password/minta_tautan'] = 'password/request_link';
 $route['ganti/password'] = 'user/change_password';
 $route['pengguna/tambah_baru'] = 'user/add_new';
 $route['daftar/pengguna'] = 'user/lists';
+$route['dashboard/data_moderation'] = 'dashboard/data_moderation';
