@@ -42,58 +42,60 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <table class="table table-hover">
-        <tr>
-            <th>#</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Action</th>
-        </tr>
-        {% set number = 1 %}
-        {% for location in locations %}
+    <div style="overflow: auto;">
+        <table class="table table-hover">
             <tr>
-                <td>{{ number }}</td>
-                <td>
-                    {{ location.latitude }}
-                </td>
-                <td>
-                    {{ location.longitude }}
-                </td>
-                <td>
-                    <a 
-                        class="btn btn-primary" 
-                        href="{{ location.url }}"
-                        target="_blank" 
-                    >
-                        <i class="fa fa-search"></i>
-                    </a>
-                    <a 
-                        class="btn btn-success" 
-                        href="{{ 
-                            site_url(
-                                'dashboard/action_data_moderation/approve/'
-                                ~
-                                location.id
-                            ) 
-                        }}"
-                    >
-                        <i class="fa fa-check"></i>
-                    </a>
-                    <a 
-                        class="btn btn-danger"
-                        href="{{ 
-                            site_url(
-                                'dashboard/action_data_moderation/delete/'
-                                ~
-                                location.id
-                            ) 
-                        }}"
-                        >
-                        <i class="fa fa-close"></i>
-                    </a>
-                </td>
+                <th>#</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Action</th>
             </tr>
-            {% set number = number + 1 %}
-        {% endfor %}
-    </table>
+            {% set number = 1 %}
+            {% for location in locations %}
+                <tr>
+                    <td>{{ number }}</td>
+                    <td>
+                        {{ location.latitude }}
+                    </td>
+                    <td>
+                        {{ location.longitude }}
+                    </td>
+                    <td>
+                        <a 
+                            class="btn btn-primary" 
+                            href="{{ location.url }}"
+                            target="_blank" 
+                        >
+                            <i class="fa fa-search"></i>
+                        </a>
+                        <a 
+                            class="btn btn-success" 
+                            href="{{ 
+                                site_url(
+                                    'dashboard/action_data_moderation/approve/'
+                                    ~
+                                    location.id
+                                ) 
+                            }}"
+                        >
+                            <i class="fa fa-check"></i>
+                        </a>
+                        <a 
+                            class="btn btn-danger"
+                            href="{{ 
+                                site_url(
+                                    'dashboard/action_data_moderation/delete/'
+                                    ~
+                                    location.id
+                                ) 
+                            }}"
+                            >
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% set number = number + 1 %}
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
