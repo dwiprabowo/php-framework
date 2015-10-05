@@ -1,0 +1,99 @@
+{% extends 'template/dashboard.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    <style>
+        .data-moderation .media-object{
+            max-width: 64px;
+        }
+        .data-moderation .media{
+            border: 1px solid transparent;
+            padding: 15px;
+            padding-bottom: 0;
+            cursor: pointer;
+        }
+        .data-moderation .media:hover{
+            border: 1px solid rgba(0, 0, 0, .2);
+        }
+/*        table.data-locations *{
+            font-size: 10px;
+        }
+*/    </style>
+{% endblock %}
+
+{% block dashboard_breadcrumb %}
+    <li>
+        <a href="{{ site_url('dashboard') }}">
+            {{ t('common_dashboard') }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ site_url('dashboard/data_moderation') }}">
+            {{ t('common_data_moderation') }}
+        </a>
+    </li>
+    <li class="active">
+        {% if user %}
+            {{ user.detail.displayName}}
+        {% else %}
+            Unknown
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block dashboard_content %}
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Action</th>
+        </tr>
+        {% set number = 1 %}
+        {% for location in locations %}
+            <tr>
+                <td>{{ number }}</td>
+                <td>
+                    {{ location.latitude }}
+                </td>
+                <td>
+                    {{ location.longitude }}
+                </td>
+                <td>
+                    <a 
+                        class="btn btn-primary" 
+                        href="{{ location.url }}"
+                        target="_blank" 
+                    >
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <a 
+                        class="btn btn-success" 
+                        href="{{ 
+                            site_url(
+                                'dashboard/action_data_moderation/approve/'
+                                ~
+                                location.id
+                            ) 
+                        }}"
+                    >
+                        <i class="fa fa-check"></i>
+                    </a>
+                    <a 
+                        class="btn btn-danger"
+                        href="{{ 
+                            site_url(
+                                'dashboard/action_data_moderation/delete/'
+                                ~
+                                location.id
+                            ) 
+                        }}"
+                        >
+                        <i class="fa fa-close"></i>
+                    </a>
+                </td>
+            </tr>
+            {% set number = number + 1 %}
+        {% endfor %}
+    </table>
+{% endblock %}

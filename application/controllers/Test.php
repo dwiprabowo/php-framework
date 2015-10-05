@@ -42,11 +42,22 @@ class Test extends CLI_Controller{
                 'latitude' => -7.4804501,
                 'longitude' => 110.2285351,
             ],
+            [
+                'latitude' => -7.4834501,
+                'longitude' => 110.2236351,
+            ],
+            [
+                'latitude' => -7.4839501,
+                'longitude' => 110.2231351,
+            ],
         ];
+        $added_count = 0;
         foreach ($data as $index => $latlng) {
             if(!$this->location_model->get_by($latlng)){
                 $this->location_model->insert($latlng);
+                $added_count++;
             }
         }
+        echo "$added_count locations added!";
     }
 }

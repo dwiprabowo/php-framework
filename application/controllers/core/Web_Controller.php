@@ -14,6 +14,7 @@ abstract class Web_Controller extends WebMethod_Controller{
     private $request;
     private $idiom = "indonesian";
     private $current_uri = [];
+    private $view = false;
 
     function __construct(){
         parent::__construct();
@@ -150,7 +151,7 @@ abstract class Web_Controller extends WebMethod_Controller{
     }
 
     function _render(){
-        $view = $this->_viewPath().$this->twig_ext;
+        $view = ($this->view?:$this->_viewPath()).$this->twig_ext;
         if(file_exists($this->twig_dir.$view)){
             $template = $this->twig->loadTemplate($view);
             echo $template->render($this->_var());
@@ -170,5 +171,9 @@ abstract class Web_Controller extends WebMethod_Controller{
         return $this->router->fetch_class()
             .DS
             .$this->router->fetch_method();
+    }
+
+    function _setView($view){
+        $this->view = $view;
     }
 }

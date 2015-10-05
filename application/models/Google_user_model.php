@@ -32,6 +32,7 @@ class Google_User_Model extends MY_Model{
                 locations ON locations.google_user_id = google_users.id
             WHERE
                 locations.review_status = 0
+                AND locations.deleted_date IS NULL
             GROUP BY google_users.id
             ORDER BY locations.created_date DESC
         ";

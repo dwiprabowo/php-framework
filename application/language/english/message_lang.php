@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+$lang['message_no_data_to_process'] = "No available data to be processed";
+$lang['message_data_deleted'] = "Data has been deleted";
+$lang['message_error_processing_data'] = "Error while processing data, please try again";
+$lang['message_data_approved'] = "Data has been approved";
+$lang['message_error_delete_location'] = "Data can't be deleted";
 $lang['message_change_lang_no_value'] = "No language to be selected.";
 $lang['message_invalid_user_login_info'] = "Invalid user login info.";
 $lang['message_successfully_login'] = "Successfully login.";

@@ -13,10 +13,79 @@ class Dashboard extends Auth_Controller{
     function index(){}
     
     function data_moderation($user_id = false){
+        if($user_id){
+            $this->data_moderation_detail($user_id);
+        }else{
+            $this->data_moderation_index();
+        }
+    }
+
+    private function data_moderation_index(){
         $this->_var(
             'users',
             $this->google_user_model->get_data()
         );
+    }
+
+    function action_data_moderation($action, $id){
+        $this->{'action_data_moderation_'.$action}($id);
+        notif('message_error_processing_data');
+        redirect('dashboard/data_moderation');
+    }
+
+    private function action_data_moderation_approve($id){
+        $updated = $this->location_model->update(
+            $id, ['review_status' => 1]
+        );
+        if($updated){
+            $location = $this->location_model->get($id);
+            notif(['success', 'message_data_approved']);
+            redirect(
+                'dashboard/data_moderation/'
+                .(
+                    @$location->google_user_id?:'unknown'
+                )
+            );
+        }
+    }
+
+    private function action_data_moderation_delete($id){
+        $location = $this->location_model->get($id);
+        $deleted = $this->location_model->delete($id);
+        if($deleted){
+            notif(['success', 'message_data_deleted']);
+            redirect(
+                'dashboard/data_moderation/'
+                .(
+                    @$location->google_user_id?:'unknown'
+                )
+            );
+        }
+    }
+
+    private function data_moderation_detail($id){
+        $user = $this->google_user_model->get($id);
+        if($user){
+            $user->detail = json_decode($user->data);
+        }
+        $locations = [];
+        $locations = $this->location_model->get_many_by(
+            [
+                'google_user_id' => $user?$id:null,
+                'review_status' => 0
+            ]
+        );
+        if(!$locations){
+            notif(['warning', 'message_no_data_to_process']);
+            redirect('dashboard/data_moderation');
+        }
+        foreach ($locations as $index => &$location) {
+            $location->url = "https://www.google.co.id/maps?q=loc:".
+            "$location->latitude,$location->longitude";
+        }
+        $this->_var('user', $user);
+        $this->_var('locations', $locations);
+        $this->_setView('dashboard/data_moderation/detail');
     }
 
     function web_api(){}
