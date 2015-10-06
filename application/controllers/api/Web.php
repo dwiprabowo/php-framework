@@ -36,13 +36,25 @@ class Web extends REST_Controller{
             'message' => 'add_user_locations error',
             'data' => $data,
         ];
-        $google_user = json_decode($data['google_user_data']);
+
+        $google_user = json_decode(
+            str_replace("#dan#", "&", $data['google_user_data'])
+        );
 
         if(!$this->google_user_model->get($google_user->id)){
             $user_inserted = $this->google_user_model->insert([
                 'id' => $google_user->id,
                 'data' => $data['google_user_data'],
             ]);
+        }elseif(
+            $this->google_user_model->get($google_user->id)->data
+            !=
+            $data['google_user_data']
+        ){
+            $this->google_user_model->update(
+                $google_user->id,
+                ['data' => $data['google_user_data']]
+            );
         }
 
         $latlng = [
