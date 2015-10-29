@@ -22,4 +22,17 @@ class Location_Model extends MY_Model{
         $data['updated_date'] = date("Y-m-d H:i:s");
         return $data;
     }
+
+    function get_with_user_locations($user_id){
+        $this->db->select('latitude, longitude');
+        $locations = $this->get_many_by([
+            'review_status' => 1,
+            'deleted_date' => null,
+        ]);
+        $user_locations = $this->get_many_by([
+            'review_status' => 0,
+            'deleted_date' => null,
+            'google_user_id' => $user_id,
+        ]);
+    }
 }

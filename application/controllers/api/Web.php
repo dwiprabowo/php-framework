@@ -3,20 +3,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Web extends REST_Controller{
 
-    function get_locations_get(){
+    function get_locations_get($user_id = false){
         $result = [
             'status' => false,
             'message' => 'Unknown Error!',
         ];
 
+        log_message('error', "user_id: ".$user_id);
         $this->load->model('location_model');
         $this->db->select('latitude, longitude');
         $locations = $this->location_model
-            ->get_all();
+            ->get_many_by([
+                'review_status' => 1,
+            ]);
+
+        if($user_id){
+            $this->db->select('latitude, longitude');
+            $user_locations = $this->location_model
+            ->get_many_by([
+                'review_status' => 0,
+                'google_user_id' => $user_id
+            ]);
+            foreach ($user_locations as $key => $value) {
+                $value->is_pending = true;
+            }
+            log_message('error', "user_locations: ".ds($user_locations));
+            log_message('error', "locations_count: ".count($locations));
+            $locations = array_merge($locations, $user_locations);
+            log_message('error', "locations_count after merge: ".count($locations));
+        }
+
+
+        log_message('error', $this->db->last_query());
         // $locations = [];
         if($locations){
             $result = [
                 'status' => true,
+                'data_count' => count($locations),
                 'data' => $locations,
             ];
         }else{
@@ -24,6 +47,17 @@ class Web extends REST_Controller{
         }
 
         $this->response($result, 200);
+    }
+
+    function get_locations_with_user_get($user_id){
+        $result = [
+            'status' => false,
+            'message' => 'Unknown Error!',
+        ];
+
+        $this->load->model('location_model');
+
+        $locations = $this->location_model->get_with_user_locations($user_id);
     }
 
     function add_user_locations_post(){
