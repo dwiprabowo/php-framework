@@ -41,7 +41,25 @@ class Migration_create_locations extends MY_Migration{
                 'type' => 'INT',
                 'constraint' => 1,
                 'default' => 0,
-            ]
+            ],
+            'name' => [
+                'type' => 'VARCHAR',
+                'constraint' => 200,
+                'default' => null,
+            ],
+            'type' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+                'default' => null,
+            ],
+            'open_time' => [
+                'type' => 'TIME',
+                'default' => null,
+            ],
+            'close_time' => [
+                'type' => 'TIME',
+                'default' => null,
+            ],
         ];
     }
 }

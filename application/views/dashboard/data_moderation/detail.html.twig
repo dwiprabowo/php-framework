@@ -46,8 +46,7 @@
         <table class="table table-hover">
             <tr>
                 <th>#</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Detail</th>
                 <th>Action</th>
             </tr>
             {% set number = 1 %}
@@ -55,9 +54,10 @@
                 <tr>
                     <td>{{ number }}</td>
                     <td>
+                        {{ location.name}}
+                        <br>
                         {{ location.latitude }}
-                    </td>
-                    <td>
+                        <br>
                         {{ location.longitude }}
                     </td>
                     <td>
