@@ -98,12 +98,28 @@ class Web extends REST_Controller{
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
         ];
+        if($data['title']){
+            $latlng['name'] = $data['title'];
+        }
+        if($data['type']){
+            $latlng['type'] = $data['type'];
+        }
+        if($data['open_time'] and strtolower($data['open_time']) != "buka"){
+            $latlng['open_time'] = $data['open_time'];
+        }
+        if($data['close_time'] and strtolower($data['close_time']) != "tutup"){
+            $latlng['close_time'] = $data['close_time'];
+        }
 
+        log_message('error', "latlng data: ".ds($latlng));
         if($this->location_model->insert($latlng)){
+            log_message('error', "latlng data inserted");
             $result = [
                 'status' => true,
                 'message' => 'Location added!',
             ];
+        }else{
+            log_message('error', "latlng data fail insert");
         }
 
         $this->response($result, 200);
