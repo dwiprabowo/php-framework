@@ -101,6 +101,9 @@ class Web extends REST_Controller{
         if($data['title']){
             $latlng['name'] = $data['title'];
         }
+        if($data['phone']){
+            $latlng['phone'] = $data['phone'];
+        }
         if($data['type']){
             $latlng['type'] = $data['type'];
         }
