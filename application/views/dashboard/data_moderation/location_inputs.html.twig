@@ -1,0 +1,86 @@
+<div class="row data-moderation">
+    <h3><u>Lokasi Masukan</u></h3>
+    {% if users %}
+        {% set number = 1 %}
+        {% for user in users %}
+            <div class="col-sm-4">
+                <div 
+                    class="media" 
+                >
+                    <div class="media-left">
+                        {% if user.detail %}
+                            <a 
+                                href="{{ user.detail.url }}"
+                                target="_blank">
+                                <img 
+                                    class="media-object thumbnail" 
+                                    src="{{ 
+                                        user.detail.image.url
+                                        ?:(
+                                            user.detail.photo?:
+                                            base_url("assets/img/profile-picture-default.png")
+                                        )
+                                    }}" 
+                                    alt="{{ user.detail.displayName }}">
+                            </a>
+                        {% else %}
+                            <a 
+                                href="javascript:void(0);"
+                                >
+                                <img 
+                                    class="media-object thumbnail" 
+                                    src="{{ base_url(
+                                        'assets/img/profile-picture-default.png'
+                                    ) }}" 
+                                    alt="Unknown User">
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {% if user.detail %}
+                                {{ user.detail.displayName }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </h4>
+                        {{ user.detail.gender }}
+                        <div style="margin-bottom: 10px;">
+                            <span class="badge">
+                                {{ user.pending_locations }}
+                            </span>
+                            Lokasi
+                        </div>
+                        <div>
+                            <span 
+                                class="btn btn-primary"
+                                onclick="window.location = '{{ 
+                                    site_url(
+                                        'dashboard/data_moderation/'
+                                        ~
+                                        (user.detail?user.detail.id:"unknown")
+                                    )
+                                }}'"
+                            >
+                                <i class="fa fa-edit"></i>
+                            </span>
+                            <span 
+                                class="btn btn-danger"
+                                onclick="window.open('{{ 
+                                    '//plus.google.com/'
+                                    ~
+                                    (user.detail.id)
+                                }}', '_blank')"
+                            >
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% set number = number + 1 %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>Tidak ada data tersedia.</h3>
+    {% endif %}
+</div>

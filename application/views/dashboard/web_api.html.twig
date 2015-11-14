@@ -40,6 +40,11 @@
                     data-api-url="api/web/add_user_locations"
                     id="input-location" 
                 >Lokasi Masukan</li>
+                <li 
+                    class="list-group-item"
+                    data-api-url="api/web/add_location_report"
+                    id="location-report" 
+                >Laporkan Lokasi</li>
             </ul>
         </div>
         <div class="col-sm-9">
@@ -90,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Google User Data</label>
-                            <input class="form-control" name="google_user_data" id="google_user_data">
+                            <input class="form-control google_user_data" name="google_user_data">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Nama Tempat</label>
@@ -124,6 +129,43 @@
                     </div>
                 </div>
             </div>
+            <div 
+                class="panel panel-default hidden" 
+                id="location-report-interface"
+            >
+                <div class="panel-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <div>
+                                access url: {base_url}/api/web/add_location_report
+                            </div>
+                            <blockquote>
+                                Web API untuk menambahkan data lokasi
+                                yang bermasalah. Berparameter ~ user, location
+                            </blockquote>
+                            <div class="form-group">
+                                <label class="control-label">Google User Data</label>
+                                <input class="form-control google_user_data" name="google_user_data">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Location ID</label>
+                                <input class="form-control" name="location_id">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Alasan</label>
+                                <textarea class="form-control" name="desc"></textarea>
+                            </div>
+                            <button class="btn btn-primary">
+                                POST
+                            </button>
+                        </div>
+                    </form>
+                    <div class="well hidden">
+                        <h5>Response:</h5>
+                        <div class="response"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -133,7 +175,7 @@
         base_url('vendor/malsup/form/jquery.form.js')
     }}"></script>
     <script>
-        $("#google_user_data").val(
+        $(".google_user_data").val(
             JSON.stringify(
                 {"organizations":[{"startDate":"2009","title":"Sistem Informasi","primary":false,"name":"STMIK Amikom Yogyakarta","endDate":"2013","type":"school"}],"isPlusUser":true,"image":{"url":"https:\/\/lh3.googleusercontent.com\/-e1tsemQX_Xk\/AAAAAAAAAAI\/AAAAAAAAABE\/kHSkytYZfxA\/photo.jpg?sz=50"},"url":"https:\/\/plus.google.com\/105470245070799702246","id":"105470245070799702246","verified":false,"name":{"familyName":"Prabowo","givenName":"Dwi"},"gender":"male","circledByCount":0,"language":"en","displayName":"Dwi Prabowo","objectType":"person"}
             )

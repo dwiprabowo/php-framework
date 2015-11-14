@@ -127,4 +127,63 @@ class Web extends REST_Controller{
 
         $this->response($result, 200);
     }
+
+    function add_location_report_post(){
+        $this->load->model('google_user_model');
+        $this->load->model('location_model');
+        $this->load->model('location_report_model');
+
+        $data = $this->input->post(null);
+        $result = [
+            'status' => false,
+            'message' => 'add_location_report error',
+            'data' => $data,
+        ];
+
+        $google_user = json_decode(
+            str_replace("#dan#", "&", $data['google_user_data'])
+        );
+        if(!$this->google_user_model->get($google_user->id)){
+            $user_inserted = $this->google_user_model->insert([
+                'id' => $google_user->id,
+                'data' => $data['google_user_data'],
+            ]);
+        }elseif(
+            $this->google_user_model->get($google_user->id)->data
+            !=
+            $data['google_user_data']
+        ){
+            $this->google_user_model->update(
+                $google_user->id,
+                ['data' => $data['google_user_data']]
+            );
+        }
+
+        unset($data['google_user_data']);
+        $data['google_user_id'] = $google_user->id;
+        if($google_user->id and $data['location_id']){
+            $location =
+                $this->location_model->get($data['location_id']);
+            if($location){
+                $inserted = $this->location_report_model->insert($data);
+                if($inserted){
+                    $result = [
+                        'status' => true,
+                        'data' => $data,
+                    ];
+                }else{
+                    $result['message'] = 'error while try to insert!';
+                }
+            }else{
+                $result['message'] = "user/location not found!";
+            }
+        }else{
+            $result['message'] = "user / location id not provided!";
+        }
+
+        log_message('error', ds($data));
+        log_message('error', ds($result));
+
+        $this->response($result, 200);
+    }
 }

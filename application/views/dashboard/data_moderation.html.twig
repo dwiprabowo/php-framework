@@ -9,7 +9,7 @@
         .data-moderation .media{
             border: 1px solid transparent;
             padding: 15px;
-            padding-bottom: 0;
+            padding-bottom: 5px;
             cursor: pointer;
         }
         .data-moderation .media:hover{
@@ -33,66 +33,7 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="row data-moderation">
-        {% if users %}
-            {% set number = 1 %}
-            {% for user in users %}
-                <div class="col-sm-4">
-                    <div 
-                        class="media" 
-                        onclick="window.location = '{{ 
-                            site_url(
-                                'dashboard/data_moderation/'
-                                ~
-                                (user.detail?user.detail.id:"unknown")
-                            )
-                        }}'"
-                    >
-                        <div class="media-left">
-                            {% if user.detail %}
-                                <a 
-                                    href="{{ user.detail.url }}"
-                                    target="_blank">
-                                    <img 
-                                        class="media-object thumbnail" 
-                                        src="{{ user.detail.image.url }}" 
-                                        alt="{{ user.detail.displayName }}">
-                                </a>
-                            {% else %}
-                                <a 
-                                    href="javascript:void(0);"
-                                    >
-                                    <img 
-                                        class="media-object thumbnail" 
-                                        src="{{ base_url(
-                                            'assets/img/profile-picture-default.png'
-                                        ) }}" 
-                                        alt="Unknown User">
-                                </a>
-                            {% endif %}
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {% if user.detail %}
-                                    {{ user.detail.displayName }}
-                                {% else %}
-                                    Unknown
-                                {% endif %}
-                            </h4>
-                            {{ user.detail.gender }}
-                            <div>
-                                <span class="badge">
-                                    {{ user.pending_locations }}
-                                </span>
-                                Lokasi
-                            </div>
-                        </div>
-                    </div>
-                    {% set number = number + 1 %}
-                </div>
-            {% endfor %}
-        {% else %}
-            <h3>Tidak ada data tersedia.</h3>
-        {% endif %}
-    </div>
+    {% include 'dashboard/data_moderation/location_inputs.html.twig' %}
+    <hr>
+    {% include 'dashboard/data_moderation/location_reports.html.twig' %}
 {% endblock %}
