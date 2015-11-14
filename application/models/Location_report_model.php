@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Location_report_Model extends MY_Model{
 
-    protected $belongs_to = ['google_user'];
-
     protected $before_create = [
         'create_date',
         'update_date',
@@ -20,6 +18,24 @@ class Location_report_Model extends MY_Model{
 
     function update_date($data){
         $data['updated_date'] = date("Y-m-d H:i:s");
+        return $data;
+    }
+
+    function get_all(){
+        $this->load->model('google_user_model');
+        $this->load->model('location_model');
+        $data = parent::get_all();
+        foreach ($data as $key => &$value) {
+            $value->google_user = 
+                $this->google_user_model->get($value->google_user_id);
+            $value->google_user->detail = 
+                json_decode($value->google_user->data);
+            $value->location = 
+                $this->location_model->get($value->location_id);
+            if(!$value->google_user || !$value->location){
+                unset($data[$key]);
+            }
+        }
         return $data;
     }
 }

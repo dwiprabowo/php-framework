@@ -10,7 +10,6 @@
                     <div class="media-left">
                         {% if user.detail %}
                             <a 
-                                href="{{ user.detail.url }}"
                                 target="_blank">
                                 <img 
                                     class="media-object thumbnail" 
@@ -44,7 +43,6 @@
                                 Unknown
                             {% endif %}
                         </h4>
-                        {{ user.detail.gender }}
                         <div style="margin-bottom: 10px;">
                             <span class="badge">
                                 {{ user.pending_locations }}

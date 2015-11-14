@@ -1,3 +1,44 @@
-<div class="row">
+<div class="row location-reports">
     <h3><u>Pelaporan Lokasi Bermasalah</u></h3>
+    {% if not location_reports %}
+        <h3>Tidak ada data.</h3>
+    {% else %}
+        {% for report in location_reports %}
+            <div class="col-sm-4">
+                <div class="media">
+                    <div class="media-left">
+                        <img 
+                            class="media-object thumbnail" 
+                            src="{{ report.google_user.detail.image.url?:(
+                            report.google_user.detail.photo?:
+                            base_url("assets/img/profile-picture-default.png")
+                        ) }}">
+                    </div>
+                    <div class="media-body">
+                        <div class="well">
+                            {{ report.desc }}
+                        </div>
+                    </div>
+                    <div>
+                        <a href="{{ 
+                            site_url(
+                                'dashboard/ignore_location_report/'
+                                ~ report.id
+                            )
+                        }}">
+                            <span class="btn btn-danger">Abaikan</span>
+                        </a>
+                        <a href="{{ 
+                            site_url(
+                                'dashboard/delete_location_report/'
+                                ~ report.id
+                            )
+                        }}">
+                            <span class="btn btn-warning">Hapus Lokasi</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 </div>

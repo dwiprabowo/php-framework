@@ -20,10 +20,34 @@ class Dashboard extends Auth_Controller{
         }
     }
 
+    function ignore_location_report($id){
+        $deleted = $this->location_report_model->delete($id);
+        if($deleted){
+            notif(['success', 'message_data_deleted']);
+            redirect('dashboard/data_moderation');
+        }
+    }
+
+    function delete_location_report($id){
+        $report = $this->location_report_model->get($id);
+        $deleted_location = 
+            $this->location_model->delete($report->location_id);
+        if($deleted_location){
+            notif(['success', 'message_data_deleted']);
+            redirect('dashboard/data_moderation');
+        }
+    }
+
     private function data_moderation_index(){
         $this->_var(
             'users',
             $this->google_user_model->get_data()
+        );
+        $this->_var(
+            'location_reports',
+            $this->location_report_model
+                ->with(['google_user', 'location'])
+                ->get_all()
         );
     }
 
@@ -141,6 +165,6 @@ class Dashboard extends Auth_Controller{
     }
 
     function _models(){
-        return ['login', 'user', 'location', 'google_user'];
+        return ['login', 'user', 'location', 'google_user', 'location_report'];
     }
 }
