@@ -34,6 +34,10 @@ class Location_report_Model extends MY_Model{
                 $this->location_model->get($value->location_id);
             if(!$value->google_user || !$value->location){
                 unset($data[$key]);
+            }else{
+                $value->location->url = 
+                    "https://www.google.co.id/maps?q=loc:".
+                    "{$value->location->latitude},{$value->location->longitude}";
             }
         }
         return $data;

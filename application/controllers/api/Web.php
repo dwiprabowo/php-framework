@@ -12,7 +12,7 @@ class Web extends REST_Controller{
         log_message('error', "user_id: ".$user_id);
         $this->load->model('location_model');
         $this->db->select(
-            'latitude, longitude, name, open_time, close_time, type'
+            'id, latitude, longitude, name, open_time, close_time, type'
         );
         $locations = $this->location_model
             ->get_many_by([
@@ -20,7 +20,9 @@ class Web extends REST_Controller{
             ]);
 
         if($user_id){
-            $this->db->select('latitude, longitude');
+            $this->db->select(
+                'id, latitude, longitude, name, open_time, close_time, type'
+            );
             $user_locations = $this->location_model
             ->get_many_by([
                 'review_status' => 0,
