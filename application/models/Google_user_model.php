@@ -33,7 +33,7 @@ class Google_User_Model extends MY_Model{
             WHERE
                 locations.review_status = 0
                 AND locations.deleted_date IS NULL
-            GROUP BY google_users.id
+            GROUP BY google_users.id, locations.id
             ORDER BY locations.created_date DESC
         ";
         $result = $this->db->query($query);
