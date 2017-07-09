@@ -18,6 +18,7 @@ class Migration_create_users extends MY_Migration{
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'keys' => true,
+                'default' => null,
             ],
             'birth_date' => [
                 'type' => 'DATE',
@@ -26,24 +27,30 @@ class Migration_create_users extends MY_Migration{
             'birth_place' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
+                'default' => null,
             ],
             'gender' => [
                 'type' => 'CHAR',
                 'constraint' => 1,
+                'default' => null,
             ],
             'phone' => [
                 'type' => 'VARCHAR',
                 'constraint' => 18,
+                'default' => null,
             ],
             'occupation' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
+                'default' => null,
             ],
             'address' => [
                 'type' => 'TEXT',
+                'default' => null,
             ],
             'profile_picture' => [
                 'type' => 'TEXT',
+                'default' => null,
             ],
             'role' => [
                 'type' => 'VARCHAR',
